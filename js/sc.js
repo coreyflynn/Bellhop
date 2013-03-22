@@ -74,6 +74,6 @@ function sigInfoToSC(params){
     tsv.forEach(function(){
       sc_data.push({s:this.distil_ss, c:this.distil_cc_q75})
     });
-    sc(sc_data,params.width,params.height.params.margin);
+    sc(sc_data,params.width,params.height,params.margin);
   })
 }
