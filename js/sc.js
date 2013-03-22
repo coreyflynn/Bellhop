@@ -71,9 +71,11 @@ function sc(sc_data,width,height,margin){
 function sigInfoToSC(params){
   d3.tsv(params.url,function(tsv){
     var sc_data = []
-    tsv.forEach(function(){
-      sc_data.push({s:this.distil_ss, c:this.distil_cc_q75})
+    tsv.forEach(function(element,index,array){
+      console.log(element);
+      sc_data.push({s:element.distil_ss, c:element.distil_cc_q75})
     });
+    console.log(sc_data);
     sc(sc_data,params.width,params.height,params.margin);
   })
 }
