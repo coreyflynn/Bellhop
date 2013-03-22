@@ -1,5 +1,4 @@
-function SC(){
-  var width = 600, height = 600, margin = 50;
+function sc(sc_data,width,height,margin){
 
   var svg=d3.select("#sc_plot").append("svg").attr("width",width).attr("height",height);
   var x=d3.scale.linear().domain([0,1]).range([margin,width-margin]);
@@ -51,23 +50,30 @@ function SC(){
       .attr("transform", "rotate(-90)")
       .text("SS");
 
-  d3.tsv("sig_info.txt",function(tsv) {
-    //we create the marks, which we put in an initial position
-    svg.selectAll("circle").data(tsv).enter()
-      .append("circle")
-      .attr("cx",function(d) {return x(0);})
-      .attr("cy",function(d) {return y(0);})
-      .attr("r",function(d) {return r(0);})
-      .style("opacity","0.5")
-      .style("fill","blue")
-        .append("title")
-        .text(function(d) {return d.sig_id;})
+  //we create the marks, which we put in an initial position
+  svg.selectAll("circle").data(sc_data).enter()
+    .append("circle")
+    .attr("cx",function(d) {return x(0);})
+    .attr("cy",function(d) {return y(0);})
+    .attr("r",function(d) {return r(0);})
+    .style("opacity","0.5")
+    .style("fill","blue")
+      .append("title")
+      .text(function(d) {return d.sig_id;})
 
-    // now we initiate - moving the marks to their position
-    svg.selectAll("circle").transition().duration(1000)
-      .attr("cx",function(d) {return x(+d.distil_cc_q75);})
-      .attr("cy",function(d) {return y(+d.distil_ss);})
-      .attr("r",15)
+  // now we initiate - moving the marks to their position
+  svg.selectAll("circle").transition().duration(1000)
+    .attr("cx",function(d) {return x(+d.c);})
+    .attr("cy",function(d) {return y(+d.s);})
+    .attr("r",15)
+}
 
-  });
+function sigInfoToSC(params){
+  d3.tsv(params.url,function(tsv){
+    var sc_data = []
+    tsv.forEach(function(){
+      sc_data.push({s:this.distil_ss, c:this.distil_cc_q75})
+    });
+    sc(sc_data,params.width,params.height.params.margin);
+  })
 }
