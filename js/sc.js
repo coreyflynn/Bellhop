@@ -72,10 +72,35 @@ function sigInfoToSC(params){
   d3.tsv(params.url,function(tsv){
     var sc_data = []
     tsv.forEach(function(element,index,array){
-      console.log(element);
       sc_data.push({s:element.distil_ss, c:element.distil_cc_q75})
     });
-    console.log(sc_data);
     sc(sc_data,params.width,params.height,params.margin);
+  })
+}
+
+function sigIdfileToSC(params){
+  var sig_ids = grpRead(params.url);
+  var sig_objects = []
+  var sc_data = []
+  var lincscloud = 'http://lincscloud.org/api/siginfo?callback=?'
+  
+  sig_ids.forEach(function(element,index,array){
+    $.getJSON(lincscloud,{q:'{"sig_id":' + element},function(response){
+      sig_objects.push(response[0]);
+    });
+  });
+
+  sig_objects.forEach(function(element,index,array){
+    sc_data.push({s:element.distil_ss, c:element.distil_cc_q75});
+  });
+
+  sc(sc_data,params.width,params.height,params.margin);
+
+}
+
+function grpRead(url){
+  d3.text(url,function(unparsedData){
+    var data = d3.csv.parseRows(unparsedData);
+    return data;
   })
 }
