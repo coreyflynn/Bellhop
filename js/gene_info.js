@@ -104,6 +104,21 @@ function Gene_Info_Object(div_id,width,height,margin){
 	}
 
 	function draw_symbol(x,y){
+		// long name text element
+		this.svg.selectAll(".long").data([]).exit().remove();
+
+		this.svg.selectAll(".long").data([this.long_name])
+			.enter().append("foreignObject")
+			.attr("class","long")
+			.attr("x",x(0))
+			.attr("y",y(0.9) + 5)
+			.attr("width",this.width - margin)
+			.attr("height",50)
+			.append("xhtml:body")
+			.style("font", "20px 'Helvetica Neue'")
+			.style("background-color","#f0f0f0")
+			.html(function(d) {return "<p>" + d + "</p>";});
+
 		this.svg.selectAll("text.symbol").data([]).exit().remove();
 
 		this.svg.selectAll("text.symbol").data([this.symbol])
@@ -114,16 +129,7 @@ function Gene_Info_Object(div_id,width,height,margin){
 			.attr("font-size",40)
 			.text(function(d){ return d;});
 
-		// long name text element
-		this.svg.selectAll("text.long").data([]).exit().remove();
-
-		this.svg.selectAll("text.long").data([this.long_name])
-			.enter().append("text")
-			.attr("class","long")
-			.attr("x",x(0))
-			.attr("y",y(0.9) + 20)
-			.attr("font-size",20)
-			.text(function(d){ return d;});
+		
 	}
 
 	function draw_KD(x,y){
