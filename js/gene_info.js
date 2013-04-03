@@ -36,6 +36,9 @@ function Gene_Info_Object(div_id,width,height,margin){
 		var geneinfo = 'http://lincscloud.org/api/geneinfo?callback=?';
 		$.getJSON(geneinfo,{q:'{"pr_gene_symbol":"' + symbol + '"}'},
                           function(response){
+                          	if (response == 0){
+                          		console.log('no entries')
+                          	}
                             self.update_symbol(response[0].pr_gene_symbol);
                             self.update_long_name(response[0].pr_gene_title);
                             self.draw_symbol(x,y);
