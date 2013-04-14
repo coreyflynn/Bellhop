@@ -74,11 +74,10 @@ function Sig_Info_Table_Object(div_id,title,show_height){
 
     // make a call to the siginfo API and populate the sig_info table with the results of
     // the call
-    $.getJSON(siginfo,{q:'{"query_id":{"$in":' + sigs_string + '}}',
+    $.getJSON(siginfo,{q:'{"sig_id":{"$in":' + sigs_string + '}}',
       f:'{"pert_iname":1,"cell_id":1,"pert_type":1,"score":1}',
       l:1000},
       function(response){
-        console.log(response)
         self.grid.setData(response);
         self.grid.render();
       }
