@@ -64,7 +64,7 @@ function Sig_Info_Table_Object(div_id,title,show_height){
 
   function set_data_from_sig_id(sig_id_list){
     // sig_info API url
-    var siginfo = 'http://lincscloud.org/api/siginfo?callback=?';
+    var siginfo = 'http://api.lincscloud.org/a2/siginfo?callback=?';
 
     // alias this to self for later use
     var self = this;
@@ -78,6 +78,7 @@ function Sig_Info_Table_Object(div_id,title,show_height){
       f:'{"pert_iname":1,"cell_id":1,"pert_type":1,"score":1}',
       l:1000},
       function(response){
+        console.log(response)
         self.grid.setData(response);
         self.grid.render();
       }
