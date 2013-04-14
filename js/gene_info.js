@@ -4,12 +4,15 @@ function Gene_Info_Object(div_id,width,height,margin){
 	this.height = height;
 	this.margin = margin;
 	this.symbol = "";
-	this.kd_num = 9;
-	this.oe_num = 99;
-	this.kd_num_lines = 3;
-	this.oe_num_lines = 5;
+	this.kd_num = 0;
+	this.oe_num = 0;
+	this.kd_num_lines = 0;
+	this.oe_num_lines = 0;
 	this.init = false;
+	this.x = d3.scale.linear().domain([0,1]).range([this.margin,this.width-this.margin]);
+	this.y = d3.scale.linear().domain([0,1]).range([this.height-this.margin,this.margin]);
 
+	this.clear = clear;
 	this.draw = draw;
 	this.draw_bg = draw_bg;
 	this.draw_symbol = draw_symbol;
@@ -19,66 +22,72 @@ function Gene_Info_Object(div_id,width,height,margin){
 	this.update_long_name = update_long_name;
 	this.update_kd = update_kd;
 	this.update_oe = update_oe;
+	this.hide = hide;
+	this.show = show;
 
-	function draw(symbol,width){
+	function clear(){
+		if (this.init){
+			this.svg.remove();
+			this.init = false;
+		}
+	}
+
+	function draw(width){
 		if (!this.init){
 			this.svg=d3.select(this.div_id).append("svg")
-										   .attr("width",width)
-										   .attr("height",height);
+						.attr("class","card")
+						.attr("width",width)
+						.attr("height",height);
 			this.init = true;
 		}
 		this.width = width;
 		var x=d3.scale.linear().domain([0,1]).range([this.margin,this.width-this.margin]);
 		var y=d3.scale.linear().domain([0,1]).range([this.height-this.margin,this.margin]);
 		this.draw_bg(x,y,this.width);
+		this.draw_symbol(x,y);
+		this.draw_KD(x,y);
+		this.draw_OE(x,y);
 
-		var self = this;
-		var geneinfo = 'http://lincscloud.org/api/geneinfo?callback=?';
-		$.getJSON(geneinfo,{q:'{"pr_gene_symbol":"' + symbol + '"}'},
-                          function(response){
-                          	if (response == 0){
-                          		console.log('no entries')
-                          	}
-                            self.update_symbol(response[0].pr_gene_symbol);
-                            self.update_long_name(response[0].pr_gene_title);
-                            self.draw_symbol(x,y);
-                          }
-        );
-        var siginfo = 'http://lincscloud.org/api/siginfo?callback=?';
-        $.getJSON(siginfo,{q:'{"pert_desc":"' + symbol +'","pert_type":"trt_sh"}',
-						  f:'{"cell_id":1}',
-						  l:1000},
-                          function(response){
-                          	var cells = []
-                          	response.forEach(function(element,index,array){
-						        	cells.push(element.cell_id);
-					        });
-					        cells = _.uniq(cells);
-                            self.update_kd(response.length,cells.length);
-                    		self.draw_KD(x,y);
-                          }
-        );
-
-        $.getJSON(siginfo,{q:'{"pert_desc":"' + symbol +'","pert_type":"trt_oe"}',
-						  f:'{"cell_id":1}',
-						  l:1000},
-                          function(response){
-                          	var cells = []
-                          	response.forEach(function(element,index,array){
-						        	cells.push(element.cell_id);
-					        });
-					        cells = _.uniq(cells);
-                            self.update_oe(response.length,cells.length);
-                    		self.draw_OE(x,y);
-                          }
-        );
-		
 	}
-		
-	function update_symbol(symbol){
+
+	function update_symbol(symbol,width){
 		this.symbol = symbol;
+		this.width = width;
+		this.draw_bg(this.x,this.y,width);
+		var self = this;
+		var pertinfo = 'http://api.lincscloud.org/a2/pertinfo?callback=?'
+		var siginfo = 'http://api.lincscloud.org/a2/siginfo?callback=?';
+		$.getJSON(pertinfo,{q:'{"pert_iname":"' + symbol + '"}'},
+                          function(response){
+                            self.update_long_name(response[0].gene_title);
+
+			$.getJSON(siginfo,{q:'{"pert_iname":"' + symbol +'"}',
+								f:'{"cell_id":1,"pert_type":1,"distil_nsample":1}',
+								l:1000},
+								function(response){
+									var oe_nsample = 0;
+									var kd_nsample = 0;
+									var kd_cells = [];
+									var oe_cells = [];
+									response.forEach(function(element,index,array){
+										if (element.pert_type == "trt_oe"){
+											oe_nsample += element.distil_nsample;
+											oe_cells.push(element.cell_id);
+										}
+										if (element.pert_type == "trt_sh"){
+											kd_nsample += element.distil_nsample;
+											kd_cells.push(element.cell_id);
+										}
+									});
+								oe_cells = _.uniq(oe_cells);
+								kd_cells = _.uniq(kd_cells);
+								self.update_oe(oe_nsample,oe_cells.length);
+								self.update_kd(kd_nsample,kd_cells.length);
+								self.draw(self.width);
+			});
+        });
 	}
-	
+
 	function update_long_name(long_name){
 		this.long_name = long_name;
 	}
@@ -86,16 +95,24 @@ function Gene_Info_Object(div_id,width,height,margin){
 	function update_kd(kd_num,kd_num_lines){
 		this.kd_num = kd_num;
 		this.kd_num_lines = kd_num_lines;
-	}	
-	
+	}
+
 	function update_oe(oe_num,oe_num_lines){
 		this.oe_num = oe_num;
 		this.oe_num_lines = oe_num_lines;
 	}
 
 	function draw_bg(x,y,width){
+		if (!this.init){
+			this.svg=d3.select(this.div_id).append("svg")
+						.attr("class","card")
+						.attr("width",width)
+						.attr("height",height);
+			this.init = true;
+		}
+
 		this.svg.selectAll("rect.bg").data([]).exit().remove();
-		
+
 		this.svg.selectAll("rect.bg").data([1])
 				.enter().append("rect")
 				.attr("x",x(0) - margin)
@@ -104,6 +121,29 @@ function Gene_Info_Object(div_id,width,height,margin){
 				.attr("height", height)
 				.attr("width", width)
 				.attr("fill", "#f0f0f0");
+
+		this.svg.selectAll("text.down").data([]).exit().remove();
+
+		this.svg.selectAll("text.down").data([1])
+			.enter().append("text")
+			.attr("class","down")
+			.attr("x",x(0.5))
+			.attr("y",y(0.5))
+			.attr("font-size",30)
+			.attr("text-anchor","middle")
+			.text("Finding Experiments...");
+
+		this.svg.selectAll("image.down").data([]).exit().remove();
+		this.svg.selectAll("image.down").data([1])
+			.enter().append("image")
+			.attr("xlink:href","http://coreyflynn.github.com/Bellhop/img/ajax-loader.gif")
+			.attr("class","down")
+			.attr("x",x(0.5) - 200)
+			.attr("y",y(0.5) - 25)
+			.attr("height",32)
+			.attr("width",32);
+
+
 	}
 
 	function draw_symbol(x,y){
@@ -131,8 +171,6 @@ function Gene_Info_Object(div_id,width,height,margin){
 			.attr("y",y(0.9))
 			.attr("font-size",40)
 			.text(function(d){ return d;});
-
-		
 	}
 
 	function draw_KD(x,y){
@@ -180,7 +218,7 @@ function Gene_Info_Object(div_id,width,height,margin){
 
 	function draw_OE(x,y){
 		this.svg.selectAll("image.up").data([]).exit().remove();
-		this.svg.selectAll("image.up").data([this.kd_num])
+		this.svg.selectAll("image.up").data([this.oe_num])
 			.enter().append("image")
 			.attr("xlink:href","http://coreyflynn.github.com/Bellhop/img/arrow_up_round_small.png")
 			.attr("class","up")
@@ -211,7 +249,7 @@ function Gene_Info_Object(div_id,width,height,margin){
 			.text("OE Experiments");
 
 		this.svg.selectAll("text.oe_lines_text").data([]).exit().remove();
-		this.svg.selectAll("text.oe_lines_text").data([this.kd_num])
+		this.svg.selectAll("text.oe_lines_text").data([this.oe_num])
 			.enter().append("text")
 			.attr("class","oe_lines_text")
 			.attr("x",x(1) - 100)
@@ -219,6 +257,19 @@ function Gene_Info_Object(div_id,width,height,margin){
 			.attr("font-size",20)
 			.attr("text-anchor","middle")
 			.text("In " + this.oe_num_lines + " Cell Lines");
+	}
+
+	function hide(){
+		if (this.init){
+			$("svg.card").height(0);
+			$("svg.card").hide();
+		}
+		$("svg.card").animate({height:0});
+	}
+
+	function show(){
+		$("svg.card").show();
+		$("svg.card").animate({height:this.height});
 	}
 
 }
