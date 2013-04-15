@@ -243,40 +243,40 @@ function SC_Panel(options){
 		// plot the x axis
 		this.svg.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(0," + (height - margin) + ")")
+			.attr("transform", "translate(0," + (this.height - this.margin) + ")")
 			.call(xAxis);
 
 		// plot the y axis
 		this.svg.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(" + margin + ",0)")
+			.attr("transform", "translate(" + this.margin + ",0)")
 			.call(yAxis);
 
 		// add y ticks
 		this.svg.selectAll(".h").data(d3.range(4,20,4)).enter()
 			.append("line").classed("h",1)
-			.attr("x1",margin).attr("x2",height-margin)
+			.attr("x1",this.margin).attr("x2",this.height-this.margin)
 			.attr("y1",this.y).attr("y2",this.y);
 
 		// add x ticks
 		this.svg.selectAll(".v").data(d3.range(0.25,2,0.25)).enter()
 			.append("line").classed("v",1)
-			.attr("y1",margin).attr("y2",width-margin)
+			.attr("y1",this.margin).attr("y2",width-this.margin)
 			.attr("x1",this.x).attr("x2",this.x);
 
 		// add x label
 		this.svg.append("text")
 			.attr("class", "x label")
 			.attr("text-anchor", "middle")
-			.attr("x", width - width/2)
-			.attr("y", height - 6)
+			.attr("x", this.width - this.width/2)
+			.attr("y", this.height - 6)
 			.text("CC");
 
 		// add y label
 		this.svg.append("text")
 			.attr("class", "y label")
 			.attr("text-anchor", "middle")
-			.attr("x", -height + height/2)
+			.attr("x", -this.height + height/2)
 			.attr("y", 6)
 			.attr("dy", ".75em")
 			.attr("transform", "rotate(-90)")
