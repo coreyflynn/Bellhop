@@ -64,7 +64,7 @@ function Sig_Info_Table_Object(div_id,title,show_height){
 
   function set_data_from_sig_id(sig_id_list){
     // sig_info API url
-    var siginfo = 'http://api.lincscloud.org/a2/siginfo?callback=?';
+    var siginfo = 'http://api.lincscloud.org/siginfo?callback=?';
 
     // alias this to self for later use
     var self = this;
@@ -75,11 +75,17 @@ function Sig_Info_Table_Object(div_id,title,show_height){
     // make a call to the siginfo API and populate the sig_info table with the results of
     // the call
     $.getJSON(siginfo,{q:'{"sig_id":{"$in":' + sigs_string + '}}',
-      f:'{"pert_iname":1,"cell_id":1,"pert_type":1,"score":1}',
+      f:'{"sig_id":1,"cell_id":1,"pert_type":1,"score":1}',
       l:1000},
       function(response){
-        self.grid.setData(response);
-        self.grid.render();
+        if (response == 0){
+          self.hide();
+          self.clear_data();
+        }else{
+          self.grid.setData(response);
+          self.grid.render();
+          self.show();
+        }
       }
     );
   }
