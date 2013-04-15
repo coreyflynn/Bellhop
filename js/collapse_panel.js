@@ -199,6 +199,92 @@ function Graph_Split_Text_Panel(options){
 	}
 }
 
+function SC_Panel(options){
+	options = (options !== undefined) ? options : {};
+	this.image = (options.image !== undefined) ? options.image : "";
+	this.image_max = (options.image_max !== undefined) ? options.image_max : 60;
+	this.div_id = (options.div_id !== undefined) ? options.div_id : "SC_Panel" + Math.floor(Math.random()*1000000000);
+	this.style = (options.style !== undefined) ? options.style : "background-color:#f0f0f0";
+	this.data = (options.data !== undefined) ? options.data : [];
+	this.margin = (options.margin !== undefined) ? options.margin : 20;
+	this.html = ['<div class="row-fluid" id="' + this.div_id + '" class="span12" style=' + this.style + '>',
+				'<div class="span2" id="' + this.div_id + '_sc"></div>',
+				'</div>'
+				].join('\n');
+
+	// method definitions
+	this.add_to_div = add_to_div;
+
+	function add_to_div(div_target){
+		// inject the panel html into the DOM
+		$("#" + div_target).append(this.html);
+
+		// set up the dimensions of the sc plot and resize the panel container div to fit the graph
+		this.sc = d3.selectAll("#" + this.div_id + "_sc");
+		this.total_width = $("#" + this.div_id + "_sc").outerWidth();
+		this.width = total_width;
+		this.height = total_width;
+
+		// add the top level svg element to the div and set up scales for the graph
+		this.svg=d3.select(this.div_id).append("svg").attr("width",this.width).attr("height",this.height);
+		this.x=d3.scale.linear().domain([0,1]).range([0,this.width - this.margin]);
+		this.y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,0]);
+
+		// build an xAxis to call later on
+		var xAxis = d3.svg.axis()
+			.scale(this.x)
+			.orient("bottom");
+
+		// build an yAxis to call later on
+		var yAxis = d3.svg.axis()
+			.scale(this.y)
+			.orient("left");
+
+		// plot the x axis
+		this.svg.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0," + (height - margin) + ")")
+			.call(xAxis);
+
+		// plot the y axis
+		this.svg.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(" + margin + ",0)")
+			.call(yAxis);
+
+		// add y ticks
+		this.svg.selectAll(".h").data(d3.range(4,20,4)).enter()
+			.append("line").classed("h",1)
+			.attr("x1",margin).attr("x2",height-margin)
+			.attr("y1",this.y).attr("y2",this.y);
+
+		// add x ticks
+		this.svg.selectAll(".v").data(d3.range(0.25,2,0.25)).enter()
+			.append("line").classed("v",1)
+			.attr("y1",margin).attr("y2",width-margin)
+			.attr("x1",this.x).attr("x2",this.x);
+
+		// add x label
+		this.svg.append("text")
+			.attr("class", "x label")
+			.attr("text-anchor", "middle")
+			.attr("x", width - width/2)
+			.attr("y", height - 6)
+			.text("CC");
+
+		// add y label
+		this.svg.append("text")
+			.attr("class", "y label")
+			.attr("text-anchor", "middle")
+			.attr("x", -height + height/2)
+			.attr("y", 6)
+			.attr("dy", ".75em")
+			.attr("transform", "rotate(-90)")
+			.text("SS");
+
+	}
+}
+
 function List_Search_Panel(options){
 	options = (options !== undefined) ? options : {};
 	this.text = (options.text !== undefined) ? options.text : "Title";
