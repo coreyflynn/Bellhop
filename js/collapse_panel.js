@@ -261,7 +261,7 @@ function SC_Panel(options){
 		// add x ticks
 		this.svg.selectAll(".v").data(d3.range(0.25,2,0.25)).enter()
 			.append("line").classed("v",1)
-			.attr("y1",this.margin).attr("y2",width-this.margin)
+			.attr("y1",this.margin).attr("y2",this.width-this.margin)
 			.attr("x1",this.x).attr("x2",this.x);
 
 		// add x label
