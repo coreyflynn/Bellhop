@@ -222,8 +222,8 @@ function SC_Panel(options){
 		// set up the dimensions of the sc plot and resize the panel container div to fit the graph
 		this.sc = d3.selectAll("#" + this.div_id + "_sc");
 		this.total_width = $("#" + this.div_id + "_sc").outerWidth();
-		this.width = total_width;
-		this.height = total_width;
+		this.width = this.total_width;
+		this.height = this.total_width;
 
 		// add the top level svg element to the div and set up scales for the graph
 		this.svg=d3.select(this.div_id).append("svg").attr("width",this.width).attr("height",this.height);
