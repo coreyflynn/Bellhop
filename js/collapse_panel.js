@@ -276,7 +276,7 @@ function SC_Panel(options){
 		this.svg.append("text")
 			.attr("class", "y label")
 			.attr("text-anchor", "middle")
-			.attr("x", -this.height + height/2)
+			.attr("x", -this.height + this.height/2)
 			.attr("y", 6)
 			.attr("dy", ".75em")
 			.attr("transform", "rotate(-90)")
