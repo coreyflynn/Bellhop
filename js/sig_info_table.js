@@ -31,9 +31,9 @@ function Sig_Info_Table_Object(div_id,title,show_height){
               'px"></div>');
 
   this.columns = [
-    {id: "sig_id", name: "Sig ID", field: "sig_id"},
-    {id: "cell_id", name: "Cell ID", field: "cell_id"},
-    {id: "pert_type", name: "Pert Type", field: "pert_type"}
+    {id: "sig_id", name: "Sig ID", field: "sig_id", sortable: true},
+    {id: "cell_id", name: "Cell ID", field: "cell_id", sortable: true},
+    {id: "pert_type", name: "Pert Type", field: "pert_type", sortable: true}
   ];
 
   this.options = {
