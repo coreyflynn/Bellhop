@@ -299,7 +299,7 @@ function SC_Panel(options){
 			.attr("width", 600)
 			.attr("height", 30)
 			.append("xhtml:div")
-			.html('<span class="label pop_over_label" style:></span>');
+			.html('<span class="label pop_over_label" style:></span><span class="label" style:>foo</span>');
 
 	}
 
@@ -323,7 +323,8 @@ function SC_Panel(options){
 		this.points.enter().append("circle")
 			.attr("cx",function(d) {return x(d.distil_cc_q75);})
 			.attr("cy",function(d) {return y(d.distil_ss);})
-			.attr("name",function(d) {return d.pert_desc;})
+			.attr("pert_desc",function(d) {return d.pert_desc;})
+			.attr("sig_id",function(d) {return d.pert_desc;})
 			.attr("r",0)
 			.attr("class","point")
 			.style("opacity","0.5")
@@ -334,7 +335,8 @@ function SC_Panel(options){
 		this.points.transition().duration(1000)
 			.attr("cx",function(d) {return x(d.distil_cc_q75);})
 			.attr("cy",function(d) {return y(d.distil_ss);})
-			.attr("name",function(d) {return d.pert_desc;})
+			.attr("pert_desc",function(d) {return d.pert_desc;})
+			.attr("sig_id",function(d) {return d.pert_desc;})
 			.attr("r",this.width / 100 + 3);
 		this.points.exit().transition(1000).attr("r",0).remove();
 	}
