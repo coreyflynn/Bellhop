@@ -11,6 +11,7 @@ function Sig_Info_Table_Object(div_id,title,show_height){
   this.open = true;
   this.add_data_from_symbol = add_data_from_symbol;
   this.set_data_from_sig_id = set_data_from_sig_id;
+  this.set_data_from_objects = set_data_from_objects;
 
   header_html = '<div class="row-fluid" id="' + this.div_id.split("#")[1] + '_head" class="span12" style="background-color:#f0f0f0">' +
       '<span class="span1"><img style="max-width:60px;max-height:60px;" src="http://coreyflynn.github.com/Bellhop/img/signature.png"></span>' +
@@ -60,6 +61,12 @@ function Sig_Info_Table_Object(div_id,title,show_height){
                   self.show();
                 });
 
+  }
+
+  function set_data_from_objects(object_array){
+    self.grid.setData(object_array);
+    self.grid.render();
+    self.show();
   }
 
   function set_data_from_sig_id(sig_id_list){
