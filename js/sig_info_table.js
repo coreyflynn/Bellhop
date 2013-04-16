@@ -48,6 +48,14 @@ function Sig_Info_Table_Object(div_id,title,show_height){
   this.grid = new Slick.Grid(this.div_id + "_SIT", this.data, this.columns, this.options);
   this.expand();
 
+  this.grid.onSort = function(e,args){
+     gridData.sort(comparer);
+     gridObj.invalidate();
+  }
+
+  function comparer(a,b){
+    return a - b;
+  }
   function add_data_from_symbol(symbol){
     var siginfo = 'http://api.lincscloud.org/a2/siginfo?callback=?';
     var sig_id_list = [];
