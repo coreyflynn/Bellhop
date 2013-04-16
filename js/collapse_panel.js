@@ -295,13 +295,16 @@ function SC_Panel(options){
 			.attr("class", "tooltips")
 			.attr("x", this.chart_offset)
 			.attr("y", this.y(10.5))
-			.attr("opacity",0)
+			.attr("opacity",1)
 			.attr("width", 600)
 			.attr("height", 100)
 			.append("xhtml:div")
 			.html('<span class="label sig_id_label"></span>')
 			.append("xhtml:div")
 			.html('<span class="label label-inverse pert_desc_label"></span>');
+
+		// hide the tooltips div
+		$(".tooltips").hide()
 
 	}
 
@@ -348,11 +351,11 @@ function SC_Panel(options){
 		popover.attr("x", point.attr("cx")).attr("y", point.attr("cy") - 60);
 		$(".sig_id_label").text(point.attr("sig_id"));
 		$(".pert_desc_label").text(point.attr("pert_desc"));
-		$(".tooltips").animate({opacity:1},1);
+		$(".tooltips").show();
 	}
 
 	function fadeOut_popover(){
-		$(".tooltips").animate({opacity:0},1);
+		$(".tooltips").hide();
 	}
 }
 
