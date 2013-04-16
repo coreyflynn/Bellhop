@@ -318,8 +318,9 @@ function SC_Panel(options){
 		// add points for each object in the array
 		this.points = this.svg.selectAll("circle").data(data);
 		this.points.enter().append("circle")
-			.attr("cx",function(d) {return x(d.x);})
-			.attr("cy",function(d) {return y(d.y);})
+			.attr("cx",function(d) {return x(d.distil_cc_q75);})
+			.attr("cy",function(d) {return y(d.distil_ss);})
+			.attr("name",function(d) {return y(d.pert_desc);})
 			.attr("r",0)
 			.attr("class","point")
 			.style("opacity","0.5")
@@ -337,7 +338,7 @@ function SC_Panel(options){
 	function fadeIn_popover(point){
 		var popover = d3.select(".tooltips");
 		popover.attr("x", point.attr("cx")).attr("y", point.attr("cy") - 30);
-		$(".pop_over_label").text(point.attr("cx"));
+		$(".pop_over_label").text(point.attr("name"));
 		$(".tooltips").animate({opacity:1},1);
 	}
 
