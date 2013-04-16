@@ -25,10 +25,10 @@ function Query_Info_Table_Object(div_id,title,show_height){
 						'px"></div>');
 
 	this.columns = [
-	{id: "pert_desc", name: "Gene Symbol", field: "pert_desc", sortable: true},
-	{id: "cell_id", name: "Cell ID", field: "cell_id", sortable: true},
-	{id: "pert_type", name: "Pert Type", field: "pert_type", sortable: true},
-	{id: "score", name: "Score", field: "score", , sortable: true}
+	{id: "pert_desc", name: "Gene Symbol", field: "pert_desc"},
+	{id: "cell_id", name: "Cell ID", field: "cell_id"},
+	{id: "pert_type", name: "Pert Type", field: "pert_type"},
+	{id: "score", name: "Score", field: "score"}
 	];
 
 	this.options = {

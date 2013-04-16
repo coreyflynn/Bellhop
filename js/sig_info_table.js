@@ -31,9 +31,9 @@ function Sig_Info_Table_Object(div_id,title,show_height){
               'px"></div>');
 
   this.columns = [
-    {id: "sig_id", name: "Sig ID", field: "sig_id", sortable: true},
-    {id: "cell_id", name: "Cell ID", field: "cell_id", sortable: true},
-    {id: "pert_type", name: "Pert Type", field: "pert_type", sortable: true}
+    {id: "sig_id", name: "Sig ID", field: "sig_id"},
+    {id: "cell_id", name: "Cell ID", field: "cell_id"},
+    {id: "pert_type", name: "Pert Type", field: "pert_type"}
   ];
 
   this.options = {
@@ -48,14 +48,6 @@ function Sig_Info_Table_Object(div_id,title,show_height){
   this.grid = new Slick.Grid(this.div_id + "_SIT", this.data, this.columns, this.options);
   this.expand();
 
-  this.grid.onSort = function(e,args){
-     gridData.sort(comparer);
-     gridObj.invalidate();
-  }
-
-  function comparer(a,b){
-    return a - b;
-  }
   function add_data_from_symbol(symbol){
     var siginfo = 'http://api.lincscloud.org/a2/siginfo?callback=?';
     var sig_id_list = [];
