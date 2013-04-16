@@ -318,9 +318,9 @@ function SC_Panel(options){
 		// add points for each object in the array
 		this.points = this.svg.selectAll("circle").data(data);
 		this.points.enter().append("circle")
-			.attr("cx",function(d) {return x(d.distil_cc_q75);})
-			.attr("cy",function(d) {return y(d.distil_ss);})
-			.attr("name",function(d) {return y(d.pert_desc);})
+			.attr("cx",function(d) {return x(parseFloat(d.distil_cc_q75));})
+			.attr("cy",function(d) {return y(parseFloat(d.distil_ss));})
+			.attr("name",function(d) {return d.pert_desc;})
 			.attr("r",0)
 			.attr("class","point")
 			.style("opacity","0.5")
