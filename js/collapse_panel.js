@@ -299,7 +299,9 @@ function SC_Panel(options){
 			.attr("width", 600)
 			.attr("height", 30)
 			.append("xhtml:div")
-			.html('<span class="label pop_over_label" style:></span><div></div><span class="label" style:>foo</span>');
+			.html('<span class="label pop_over_label" style:></span>')
+			.append("xhtml:div")
+			.html('<span class="label" style:>foo</span>');
 
 	}
 
