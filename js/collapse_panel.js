@@ -345,7 +345,7 @@ function SC_Panel(options){
 
 	function fadeIn_popover(point){
 		var popover = d3.select(".tooltips");
-		popover.attr("x", point.attr("cx")).attr("y", point.attr("cy") - 30);
+		popover.attr("x", point.attr("cx")).attr("y", point.attr("cy") - 60);
 		$(".sig_id_label").text(point.attr("sig_id"));
 		$(".pert_desc_label").text(point.attr("pert_desc"));
 		$(".tooltips").animate({opacity:1},1);
