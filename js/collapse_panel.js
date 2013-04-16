@@ -318,7 +318,6 @@ function SC_Panel(options){
 		var x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
 		var y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
 
-		console.log(x(data[0].distil_cc_q75));
 		// add points for each object in the array
 		this.points = this.svg.selectAll("circle").data(data);
 		this.points.enter().append("circle")
@@ -335,6 +334,7 @@ function SC_Panel(options){
 		this.points.transition().duration(1000)
 			.attr("cx",function(d) {return x(d.distil_cc_q75);})
 			.attr("cy",function(d) {return y(d.distil_ss);})
+			.attr("name",function(d) {return d.pert_desc;})
 			.attr("r",this.width / 100 + 3);
 		this.points.exit().transition(1000).attr("r",0).remove();
 	}
