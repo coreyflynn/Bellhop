@@ -234,17 +234,6 @@ function SC_Panel(options){
 		this.x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
 		this.y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
 
-		// add a div for tooltips
-		this.popover = this.svg.append("foreignObject")
-			.attr("class", "tooltips")
-			.attr("x", this.chart_offset)
-			.attr("y", this.y(10.5))
-			.attr("opacity",0)
-			.attr("width", 600)
-			.attr("height", 30)
-			.append("xhtml:div")
-			.html('<span class="label pop_over_label"></span>');
-
 		// build an xAxis to call later on
 		var xAxis = d3.svg.axis()
 			.scale(this.x)
@@ -298,6 +287,20 @@ function SC_Panel(options){
 			.style("font-size",30)
 			.text("SS");
 
+		// add a group to hold the points
+		this.svg.append("g").attr("class", "points_group");
+
+		// add a div for tooltips
+		this.popover = this.svg.append("foreignObject")
+			.attr("class", "tooltips")
+			.attr("x", this.chart_offset)
+			.attr("y", this.y(10.5))
+			.attr("opacity",0)
+			.attr("width", 600)
+			.attr("height", 30)
+			.append("xhtml:div")
+			.html('<span class="label pop_over_label" style:></span>');
+
 	}
 
 	function add_data(data){
@@ -308,18 +311,19 @@ function SC_Panel(options){
 		this.data = data;
 
 		// get the top level svg element and define a selection for all of the points
-		this.svg = d3.select(".sc_svg");
+		this.svg = d3.select(".points_group");
 		this.points = this.svg.selectAll("circle").data(data);
 
 		// remove old data points
 		var x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
 		var y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
 
+		console.log(x(data[0].distil_cc_q75));
 		// add points for each object in the array
 		this.points = this.svg.selectAll("circle").data(data);
 		this.points.enter().append("circle")
-			.attr("cx",function(d) {return x(parseFloat(d.distil_cc_q75));})
-			.attr("cy",function(d) {return y(parseFloat(d.distil_ss));})
+			.attr("cx",function(d) {return x(d.distil_cc_q75);})
+			.attr("cy",function(d) {return y(d.distil_ss);})
 			.attr("name",function(d) {return d.pert_desc;})
 			.attr("r",0)
 			.attr("class","point")
@@ -329,9 +333,9 @@ function SC_Panel(options){
 			.on("mouseout", function() { fadeOut_popover(); });
 
 		this.points.transition().duration(1000)
-			.attr("cx",function(d) {return x(d.x);})
-			.attr("cy",function(d) {return y(d.y);})
-			.attr("r",this.width / 40);
+			.attr("cx",function(d) {return x(d.distil_cc_q75);})
+			.attr("cy",function(d) {return y(d.distil_ss);})
+			.attr("r",this.width / 100 + 3);
 		this.points.exit().transition(1000).attr("r",0).remove();
 	}
 
