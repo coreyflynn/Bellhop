@@ -13,7 +13,7 @@ function Sig_Info_Table_Object(div_id,title,show_height){
   this.set_data_from_sig_id = set_data_from_sig_id;
   this.set_data_from_objects = set_data_from_objects;
 
-  header_html = '<div class="row-fluid" id="' + this.div_id.split("#")[1] + '_head" class="span12" style="background-color:#f0f0f0">' +
+  header_html = '<div class="row-fluid" id="' + this.div_id.split("#")[1] + '_head" class="span12" style="background-color:#f0f0f0 border-radius:20px">' +
       '<span class="span1"><img style="max-width:60px;max-height:60px;" src="http://coreyflynn.github.com/Bellhop/img/signature.png"></span>' +
       '<h3 class="span10">' + title + '</h3>' +
       '<span class="span1"><img id="'+ this.div_id.split("#")[1] + '_button" style="max-width:60px;max-height:60px;" src="http://coreyflynn.github.com/Bellhop/img/plus_round_small_blue.png"></span>' +
