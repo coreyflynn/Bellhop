@@ -297,11 +297,11 @@ function SC_Panel(options){
 			.attr("y", this.y(10.5))
 			.attr("opacity",0)
 			.attr("width", 600)
-			.attr("height", 30)
+			.attr("height", 100)
 			.append("xhtml:div")
-			.html('<span class="label sig_id_label" style:></span>')
+			.html('<span class="label sig_id_label"></span>')
 			.append("xhtml:div")
-			.html('<span class="label label-inverse pert_desc_label" style:>foo</span>');
+			.html('<span class="label label-inverse pert_desc_label"></span>');
 
 	}
 
@@ -338,7 +338,7 @@ function SC_Panel(options){
 			.attr("cx",function(d) {return x(d.distil_cc_q75);})
 			.attr("cy",function(d) {return y(d.distil_ss);})
 			.attr("pert_desc",function(d) {return d.pert_desc;})
-			.attr("sig_id",function(d) {return d.pert_desc;})
+			.attr("sig_id",function(d) {return d.sig_id;})
 			.attr("r",this.width / 100 + 3);
 		this.points.exit().transition(1000).attr("r",0).remove();
 	}
