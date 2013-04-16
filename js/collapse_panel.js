@@ -206,29 +206,44 @@ function SC_Panel(options){
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "SC_Panel" + Math.floor(Math.random()*1000000000);
 	this.style = (options.style !== undefined) ? options.style : "background-color:#f0f0f0";
 	this.data = (options.data !== undefined) ? options.data : [];
-	this.margin = (options.margin !== undefined) ? options.margin : 20;
+	this.margin = (options.margin !== undefined) ? options.margin : 50;
 	this.html = ['<div class="row-fluid" id="' + this.div_id + '" class="span12" style=' + this.style + '>',
-				'<div class="span2" id="' + this.div_id + '_sc"></div>',
+				'<div class="span12" id="' + this.div_id + '_sc"></div>',
 				'</div>'
 				].join('\n');
 
 	// method definitions
 	this.add_to_div = add_to_div;
+	this.add_data = add_data;
+	this.fadeIn_popover = fadeIn_popover;
+	this.fadeOut_popover = fadeOut_popover;
 
 	function add_to_div(div_target){
 		// inject the panel html into the DOM
 		$("#" + div_target).append(this.html);
 
-		// set up the dimensions of the sc plot and resize the panel container div to fit the graph
-		this.sc = d3.selectAll("#" + this.div_id + "_sc");
+		// set up the dimensions of the sc plot
 		this.total_width = $("#" + this.div_id + "_sc").outerWidth();
-		this.width = this.total_width;
-		this.height = this.total_width;
+		this.chart_width = this.total_width / 2;
+		this.chart_offset = this.total_width / 4;
+		this.width = this.chart_width;
+		this.height = this.chart_width;
 
 		// add the top level svg element to the div and set up scales for the graph
-		this.svg=d3.select(this.div_id).append("svg").attr("width",this.width).attr("height",this.height);
-		this.x=d3.scale.linear().domain([0,1]).range([0,this.width - this.margin]);
-		this.y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,0]);
+		this.svg=d3.select("#" + this.div_id + "_sc").append("svg").attr("class","sc_svg").attr("width",this.total_width).attr("height",this.height);
+		this.x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
+		this.y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
+
+		// add a div for tooltips
+		this.popover = this.svg.append("foreignObject")
+			.attr("class", "tooltips")
+			.attr("x", this.chart_offset)
+			.attr("y", this.y(10.5))
+			.attr("opacity",0)
+			.attr("width", 600)
+			.attr("height", 30)
+			.append("xhtml:div")
+			.html('<span class="label pop_over_label"></span>');
 
 		// build an xAxis to call later on
 		var xAxis = d3.svg.axis()
@@ -249,7 +264,7 @@ function SC_Panel(options){
 		// plot the y axis
 		this.svg.append("g")
 			.attr("class", "axis")
-			.attr("transform", "translate(" + this.margin + ",0)")
+			.attr("transform", "translate(" + (this.margin + this.chart_offset) + ",0)")
 			.call(yAxis);
 
 		// add y ticks
@@ -268,20 +283,66 @@ function SC_Panel(options){
 		this.svg.append("text")
 			.attr("class", "x label")
 			.attr("text-anchor", "middle")
-			.attr("x", this.width - this.width/2)
+			.attr("x", this.chart_offset + this.width - this.width/2)
 			.attr("y", this.height - 6)
+			.style("font-size",30)
 			.text("CC");
 
 		// add y label
 		this.svg.append("text")
 			.attr("class", "y label")
 			.attr("text-anchor", "middle")
-			.attr("x", -this.height + this.height/2)
-			.attr("y", 6)
+			.attr("x", this.chart_offset)
+			.attr("y", this.y(10.5))
 			.attr("dy", ".75em")
-			.attr("transform", "rotate(-90)")
+			.style("font-size",30)
 			.text("SS");
 
+	}
+
+	function add_data(data){
+		// adds data from the given array of objects.  The objects are required to have 'ss' and 'cc'
+		// properties
+
+		// set the data of the panel to the given data array
+		this.data = data;
+
+		// get the top level svg element and define a selection for all of the points
+		this.svg = d3.select(".sc_svg");
+		this.points = this.svg.selectAll("circle").data(data);
+
+		// remove old data points
+		var x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
+		var y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
+
+		// add points for each object in the array
+		this.points = this.svg.selectAll("circle").data(data);
+		this.points.enter().append("circle")
+			.attr("cx",function(d) {return x(d.x);})
+			.attr("cy",function(d) {return y(d.y);})
+			.attr("r",0)
+			.attr("class","point")
+			.style("opacity","0.5")
+			.style("fill","blue")
+			.on("mouseover", function() { fadeIn_popover(d3.select(d3.event.target)); })
+			.on("mouseout", function() { fadeOut_popover(); });
+
+		this.points.transition().duration(1000)
+			.attr("cx",function(d) {return x(d.x);})
+			.attr("cy",function(d) {return y(d.y);})
+			.attr("r",this.width / 40);
+		this.points.exit().transition(1000).attr("r",0).remove();
+	}
+
+	function fadeIn_popover(point){
+		var popover = d3.select(".tooltips");
+		popover.attr("x", point.attr("cx")).attr("y", point.attr("cy") - 30);
+		$(".pop_over_label").text(point.attr("cx"));
+		$(".tooltips").animate({opacity:1},1);
+	}
+
+	function fadeOut_popover(){
+		$(".tooltips").animate({opacity:0},1);
 	}
 }
 

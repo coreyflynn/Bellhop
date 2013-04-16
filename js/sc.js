@@ -119,7 +119,7 @@ function SC_Object(div_id,sc_data,width,height,margin){
       .on("mouseover", function() { d3.select(d3.event.target).style("fill", "red"); })
       .on("mouseout", function() { d3.select(d3.event.target).style("fill", "blue"); });
 
-    canvas.exit().remove()
+    canvas.exit().remove();
 
     // now we initiate - moving the marks to their position
     canvas.transition().duration(1000)
