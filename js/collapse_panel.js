@@ -204,7 +204,7 @@ function SC_Panel(options){
 	this.image = (options.image !== undefined) ? options.image : "";
 	this.image_max = (options.image_max !== undefined) ? options.image_max : 60;
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "SC_Panel" + Math.floor(Math.random()*1000000000);
-	this.style = (options.style !== undefined) ? options.style : "background-color:#f0f0f0";
+	this.style = (options.style !== undefined) ? options.style : "background-color:#dbdbdb";
 	this.data = (options.data !== undefined) ? options.data : [];
 	this.margin = (options.margin !== undefined) ? options.margin : 50;
 	this.html = ['<div class="row-fluid" id="' + this.div_id + '" class="span12" style=' + this.style + '>',
@@ -299,9 +299,9 @@ function SC_Panel(options){
 			.attr("width", 600)
 			.attr("height", 30)
 			.append("xhtml:div")
-			.html('<span class="label pop_over_label" style:></span>')
+			.html('<span class="label sig_id_label" style:></span>')
 			.append("xhtml:div")
-			.html('<span class="label" style:>foo</span>');
+			.html('<span class="label label-inverse pert_desc_label" style:>foo</span>');
 
 	}
 
@@ -346,7 +346,8 @@ function SC_Panel(options){
 	function fadeIn_popover(point){
 		var popover = d3.select(".tooltips");
 		popover.attr("x", point.attr("cx")).attr("y", point.attr("cy") - 30);
-		$(".pop_over_label").text(point.attr("name"));
+		$(".sig_id_label").text(point.attr("sig_id"));
+		$(".pert_desc_label").text(point.attr("pert_desc"));
 		$(".tooltips").animate({opacity:1},1);
 	}
 
