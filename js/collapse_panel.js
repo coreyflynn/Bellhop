@@ -1,3 +1,11 @@
+/**
+Collapse_Panel constructor
+@param {object} [options={}] options
+@classdesc A collapsible panel that contains a variable number of sub-panels.
+These panels collapse, expand, hide, and show along with the top level collapse 
+panel.
+@class
+*/
 function Collapse_Panel(options){
 	options = (options !== undefined) ? options : {};
 	this.image = (options.image !== undefined) ? options.image : "http://coreyflynn.github.com/Bellhop/img/plus_round_small.png";
@@ -31,68 +39,59 @@ function Collapse_Panel(options){
 		self.open_height = self.open_height + $("#" + panel.div_id).outerHeight();
 	});
 
-	this.init_Panel = init_Panel;
-	this.add_Panel = add_Panel;
-	this.buttonCallback = buttonCallback;
-	this.collapse = collapse;
-	this.expand = expand;
-	this.hide = hide;
-	this.show = show;
-
 	this.open = false;
 	this.collapse(0);
+}
 
-	function init_Panel(panel){
-		var self = this;
-		this.panels.push(panel);
+Collapse_Panel.prototype.init_Panel = function(panel){
+	var self = this;
+	this.panels.push(panel);
+	panel.add_to_div(self.div_id);
+	$("#" + panel.div_id).addClass(self.div_id + "_sub_panel");
+	self.open_height = self.open_height + $("#" + panel.div_id).outerHeight();
+}
+
+Collapse_Panel.prototype.add_Panel = function(panel){
+	var duration = 300;
+	var self = this;
+	this.panels.push(panel);
+	this.collapse();
+	setTimeout(function(){
 		panel.add_to_div(self.div_id);
 		$("#" + panel.div_id).addClass(self.div_id + "_sub_panel");
 		self.open_height = self.open_height + $("#" + panel.div_id).outerHeight();
-	}
+		self.expand();
+	},duration);
+}
 
-	function add_Panel(panel){
-		var duration = 300;
-		var self = this;
-		this.panels.push(panel);
-		this.collapse();
-		setTimeout(function(){
-			panel.add_to_div(self.div_id);
-			$("#" + panel.div_id).addClass(self.div_id + "_sub_panel");
-			self.open_height = self.open_height + $("#" + panel.div_id).outerHeight();
-			self.expand();
-		},duration);
+Collapse_Panel.prototype.buttonCallback = function(evt){
+	if (this.open){
+		this.collapse(300);
+		this.open = false;
+	}else{
+		this.expand(300);
+		this.open = true;
 	}
+}
 
-	function buttonCallback(evt){
-		if (this.open){
-			this.collapse(300);
-			this.open = false;
-		}else{
-			this.expand(300);
-			this.open = true;
-		}
-	}
+Collapse_Panel.prototype.collapse = function(duration){
+	$("." + this.div_id + "_sub_panel").fadeOut(duration);
+	$("#" + this.div_id).animate({height:this.close_height},duration);
+	$("#" + this.div_id + "_button").rotate({animateTo:0,duration:duration});
+}
 
-	function collapse(duration){
-		$("." + this.div_id + "_sub_panel").fadeOut(duration);
-		$("#" + this.div_id).animate({height:this.close_height},duration);
-		$("#" + this.div_id + "_button").rotate({animateTo:0,duration:duration});
-	}
+Collapse_Panel.prototype.expand = function(duration){
+	$('.' + this.div_id + "_sub_panel").fadeIn(duration);
+	$("#" + this.div_id).animate({height:this.open_height},duration);
+	$("#" + this.div_id + "_button").rotate({animateTo:45,duration:duration});
+}
 
-	function expand(duration){
-		$('.' + this.div_id + "_sub_panel").fadeIn(duration);
-		$("#" + this.div_id).animate({height:this.open_height},duration);
-		$("#" + this.div_id + "_button").rotate({animateTo:45,duration:duration});
-	}
+Collapse_Panel.prototype.hide = function(){
+	$("#" + this.div_id).hide();
+}
 
-	function hide(){
-		$("#" + this.div_id).hide();
-	}
-
-	function show(){
-		$("#" + this.div_id).show();
-	}
-
+Collapse_Panel.prototype.show = function(){
+	$("#" + this.div_id).show();
 }
 
 function Panel(options){
