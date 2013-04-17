@@ -1,10 +1,16 @@
 /**
 Collapse_Panel constructor
-@param {object} [options={}] options
+@param {object} [options={}] options object to set properties
 @classdesc A collapsible panel that contains a variable number of sub-panels.
 These panels collapse, expand, hide, and show along with the top level collapse 
 panel.
 @class
+@property {string}  image	- the image url to use in top left of the panel, defaults to "http://coreyflynn.github.com/Bellhop/img/plus_round_small.png".
+@property {int}  image_max 	- the maximum image size for the top left image in pixels, defaults to 60
+@property {string}  div_id 	- the div id into which to inject html, defaults to "body"
+@property {string}  text 	- the text to display on the panel, defaults to "Title"
+@property {string}  style 	- inline style specification, defaults to "background-color:#f0f0f0"
+@property {array}  panels 	- array of sub-panels to add on object creation, defaults to []
 */
 function Collapse_Panel(options){
 	options = (options !== undefined) ? options : {};
@@ -14,6 +20,7 @@ function Collapse_Panel(options){
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "CPanel" + Math.floor(Math.random()*1000000000);
 	this.text = (options.text !== undefined) ? options.text : "Title";
 	this.style = (options.style !== undefined) ? options.style : "background-color:#f0f0f0";
+	this.panels = (options.panels !== undefined) ? options.panels : [];
 	this.html = ['<div class="row-fluid" id="' + this.div_id + '" class="span12" style=' + this.style + '>',
 				'<div class="row-fluid">',
 				'<span class="span1"><img style="max-width:' + this.image_max + 'px;max-height:' + this.image_max + 'px;" src="' + this.image + '"/></span>',
@@ -22,7 +29,7 @@ function Collapse_Panel(options){
 				'</div>',
 				'</div>'
 				].join('\n');
-	this.panels = (options.panels !== undefined) ? options.panels : [];
+	
 
 	var self = this;
 	$(this.div_target).append(this.html);
