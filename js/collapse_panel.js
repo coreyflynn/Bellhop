@@ -29,8 +29,14 @@ function Collapse_Panel(options){
 				'</div>',
 				'</div>'
 				].join('\n');
-	
-
+	this.init();
+}
+/**
+@function 
+initializes the the collapse_panel by injecting html into the DOM, registering
+button callbacks, adding sub-panels, and seting the collapse panel to closed
+*/
+Collapse_Panel.prototype.init = function(){
 	var self = this;
 	$(this.div_target).append(this.html);
 	$(this.div_target).css("padding-bottom", "2px");
