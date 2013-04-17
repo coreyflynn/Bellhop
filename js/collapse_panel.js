@@ -31,17 +31,19 @@ function Collapse_Panel(options){
 				].join('\n');
 	this.init();
 }
+
 /**
-@function 
-initializes the the collapse_panel by injecting html into the DOM, registering
+Initializes the the collapse_panel by injecting html into the DOM, registering
 button callbacks, adding sub-panels, and seting the collapse panel to closed
+@memberof Collapse_Panel
+@function 
 */
 Collapse_Panel.prototype.init = function(){
 	var self = this;
 	$(this.div_target).append(this.html);
 	$(this.div_target).css("padding-bottom", "2px");
 
-	$("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(evt); });
+	$("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(); });
 
 	this.close_height = $("#" + this.div_id).outerHeight();
 	this.open_height = $("#" + this.div_id).outerHeight();
@@ -56,14 +58,14 @@ Collapse_Panel.prototype.init = function(){
 	this.collapse(0);
 }
 
-Collapse_Panel.prototype.init_Panel = function(panel){
-	var self = this;
-	this.panels.push(panel);
-	panel.add_to_div(self.div_id);
-	$("#" + panel.div_id).addClass(self.div_id + "_sub_panel");
-	self.open_height = self.open_height + $("#" + panel.div_id).outerHeight();
-}
-
+/**
+Adds a new panel to the panels array and adjusts the height of the
+Collapse_Panel to accomodate the new panel.  The Collapse_Panel is
+then expanded
+@memberof Collapse_Panel
+@function 
+@param {Panel} panel a Panel object to add to the Collapse_Panel
+*/
 Collapse_Panel.prototype.add_Panel = function(panel){
 	var duration = 300;
 	var self = this;
@@ -77,7 +79,13 @@ Collapse_Panel.prototype.add_Panel = function(panel){
 	},duration);
 }
 
-Collapse_Panel.prototype.buttonCallback = function(evt){
+/**
+Handles button click callbacks and opens or closes the Collapse_Panel depending
+on its state
+@memberof Collapse_Panel
+@function 
+*/
+Collapse_Panel.prototype.buttonCallback = function(){
 	if (this.open){
 		this.collapse(300);
 		this.open = false;
@@ -87,26 +95,60 @@ Collapse_Panel.prototype.buttonCallback = function(evt){
 	}
 }
 
+/**
+Collapses the Collapse_Panel
+@memberof Collapse_Panel
+@function 
+@param {int} duration the time in ms over which to animate the collapse
+*/
 Collapse_Panel.prototype.collapse = function(duration){
 	$("." + this.div_id + "_sub_panel").fadeOut(duration);
 	$("#" + this.div_id).animate({height:this.close_height},duration);
 	$("#" + this.div_id + "_button").rotate({animateTo:0,duration:duration});
 }
 
+/**
+Expands the Collapse_Panel
+@memberof Collapse_Panel
+@function 
+@param {int} duration the time in ms over which to animate the expansion
+*/
 Collapse_Panel.prototype.expand = function(duration){
 	$('.' + this.div_id + "_sub_panel").fadeIn(duration);
 	$("#" + this.div_id).animate({height:this.open_height},duration);
 	$("#" + this.div_id + "_button").rotate({animateTo:45,duration:duration});
 }
 
+/**
+Hides the Collapse_Panel
+@memberof Collapse_Panel
+@function 
+*/
 Collapse_Panel.prototype.hide = function(){
 	$("#" + this.div_id).hide();
 }
 
+/**
+Shows the Collapse_Panel
+@memberof Collapse_Panel
+@function 
+*/
 Collapse_Panel.prototype.show = function(){
 	$("#" + this.div_id).show();
 }
 
+/**
+Panel constructor
+@param {object} [options={}] options object to set properties
+@classdesc A Panel for basic display of text information with optional image.
+If no image is specified, none is shown.
+@class
+@property {string}  image	- the image url to use in top left of the panel, defaults to "".
+@property {int}  image_max 	- the maximum image size for the top left image in pixels, defaults to 60
+@property {string}  div_id 	- the div id into which to inject html, defaults to "body"
+@property {string}  text 	- the text to display on the panel, defaults to "Title"
+@property {string}  style 	- inline style specification, defaults to "background-color:#f0f0f0"
+*/
 function Panel(options){
 	options = (options !== undefined) ? options : {};
 	this.image = (options.image !== undefined) ? options.image : "";
@@ -114,6 +156,15 @@ function Panel(options){
 	this.text = (options.text !== undefined) ? options.text : "Title";
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "Panel" + Math.floor(Math.random()*1000000000);
 	this.style = (options.style !== undefined) ? options.style : "background-color:#f0f0f0";
+}
+
+/**
+Initializes the the panel by configuring the html and injecting it into the DOM
+by calling {@link Panel#add_to_div|Panel.add_to_div}
+@memberof Panel
+@function 
+*/
+Panel.prototype.init = function() {
 	if (this.image === ""){
 		this.html = ['<div class="row-fluid" id="' + this.div_id + '" class="span12" style=' + this.style + '>',
 				'<p class="lead offset2 span10">' + this.text + '</p>',
@@ -128,10 +179,15 @@ function Panel(options){
 	}
 
 	this.add_to_div = add_to_div;
+}
 
-	function add_to_div(div_target){
-		$("#" + div_target).append(this.html);
-	}
+/**
+Injects the Panel's html into the target div specified on object contruction
+@memberof Panel
+@function 
+*/	
+Panel.prototype.add_to_div = function() {
+	$("#" + div_target).append(this.html);
 }
 
 function Split_Text_Panel(options){
