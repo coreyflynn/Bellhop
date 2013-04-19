@@ -5,12 +5,13 @@ Collapse_Panel constructor
 These panels collapse, expand, hide, and show along with the top level collapse 
 panel.
 @class
-@property {string}  image	- the image url to use in top left of the panel, defaults to "http://coreyflynn.github.com/Bellhop/img/plus_round_small.png".
-@property {int}  image_max 	- the maximum image size for the top left image in pixels, defaults to 60
-@property {string}  div_id 	- the div id into which to inject html, defaults to "body"
-@property {string}  text 	- the text to display on the panel, defaults to "Title"
-@property {string}  style 	- inline style specification, defaults to "background-color:#f0f0f0"
-@property {array}  panels 	- array of sub-panels to add on object creation, defaults to []
+@property {string}  image  - the image url to use in top left of the panel, defaults to "http://coreyflynn.github.com/Bellhop/img/plus_round_small.png".
+@property {int}  image_max - the maximum image size for the top left image in pixels, defaults to 60
+@property {string}  div_target - the div id into which to inject html, defaults to "body"
+@property {string}  div_id - the div id for generated html, defaults to "CPanel" plus a random number
+@property {string}  text   - the text to display on the panel, defaults to "Title"
+@property {string}  style  - inline style specification, defaults to "background-color:#f0f0f0"
+@property {array}  panels  - array of sub-panels to add on object creation, defaults to []
 */
 function Collapse_Panel(options){
 	options = (options !== undefined) ? options : {};
@@ -56,7 +57,7 @@ Collapse_Panel.prototype.init = function(){
 
 	this.open = false;
 	this.collapse(0);
-}
+};
 
 /**
 Adds a new panel to the panels array and adjusts the height of the
@@ -77,7 +78,7 @@ Collapse_Panel.prototype.add_Panel = function(panel){
 		self.open_height = self.open_height + $("#" + panel.div_id).outerHeight();
 		self.expand();
 	},duration);
-}
+};
 
 /**
 Handles button click callbacks and opens or closes the Collapse_Panel depending
@@ -93,7 +94,7 @@ Collapse_Panel.prototype.buttonCallback = function(){
 		this.expand(300);
 		this.open = true;
 	}
-}
+};
 
 /**
 Collapses the Collapse_Panel
@@ -105,7 +106,7 @@ Collapse_Panel.prototype.collapse = function(duration){
 	$("." + this.div_id + "_sub_panel").fadeOut(duration);
 	$("#" + this.div_id).animate({height:this.close_height},duration);
 	$("#" + this.div_id + "_button").rotate({animateTo:0,duration:duration});
-}
+};
 
 /**
 Expands the Collapse_Panel
@@ -117,7 +118,7 @@ Collapse_Panel.prototype.expand = function(duration){
 	$('.' + this.div_id + "_sub_panel").fadeIn(duration);
 	$("#" + this.div_id).animate({height:this.open_height},duration);
 	$("#" + this.div_id + "_button").rotate({animateTo:45,duration:duration});
-}
+};
 
 /**
 Hides the Collapse_Panel
@@ -126,7 +127,7 @@ Hides the Collapse_Panel
 */
 Collapse_Panel.prototype.hide = function(){
 	$("#" + this.div_id).hide();
-}
+};
 
 /**
 Shows the Collapse_Panel
@@ -135,7 +136,7 @@ Shows the Collapse_Panel
 */
 Collapse_Panel.prototype.show = function(){
 	$("#" + this.div_id).show();
-}
+};
 
 /**
 Panel constructor
@@ -143,11 +144,11 @@ Panel constructor
 @classdesc A Panel for basic display of text information with optional image.
 If no image is specified, none is shown.
 @class
-@property {string}  image	- the image url to use in top left of the panel, defaults to "".
-@property {int}  image_max 	- the maximum image size for the top left image in pixels, defaults to 60
-@property {string}  div_id 	- the div id into which to inject html, defaults to "body"
-@property {string}  text 	- the text to display on the panel, defaults to "Title"
-@property {string}  style 	- inline style specification, defaults to "background-color:#f0f0f0"
+@property {string}  image   - the image url to use in top left of the panel, defaults to "".
+@property {int}  image_max  - the maximum image size for the top left image in pixels, defaults to 60
+@property {string}  div_id  - the div id into which to inject html, defaults to "body"
+@property {string}  text    - the text to display on the panel, defaults to "Title"
+@property {string}  style   - inline style specification, defaults to "background-color:#f0f0f0"
 */
 function Panel(options){
 	options = (options !== undefined) ? options : {};
@@ -179,16 +180,16 @@ Panel.prototype.init = function() {
 	}
 
 	this.add_to_div = add_to_div;
-}
+};
 
 /**
 Injects the Panel's html into the target div specified on object contruction
 @memberof Panel
 @function 
-*/	
+*/
 Panel.prototype.add_to_div = function() {
 	$("#" + div_target).append(this.html);
-}
+};
 
 function Split_Text_Panel(options){
 	options = (options !== undefined) ? options : {};
@@ -372,7 +373,7 @@ function SC_Panel(options){
 			.html('<span class="label label-inverse pert_desc_label"></span>');
 
 		// hide the tooltips div
-		$(".tooltips").hide()
+		$(".tooltips").hide();
 
 	}
 
