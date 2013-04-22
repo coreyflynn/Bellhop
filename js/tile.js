@@ -109,12 +109,13 @@ Tile.prototype.draw_bg = function() {
 	// (re)draw the background
 	this.svg.selectAll("rect.bg").data([]).exit().remove();
 	this.svg.selectAll("rect.bg").data([1])
-			.enter().append("rect")
+			.enter().append("a")
+			.attr("xlink:href",this.link)
+			.append("rect")
 			.attr("x",0)
 			.attr("y",0)
 			.attr("rx",20)
 			.attr("ry",20)
-			.attr("xlink:href",this.link)
 			.attr("class","bg")
 			.attr("height", this.height)
 			.attr("width", this.width)
