@@ -127,7 +127,7 @@ hides the tile
 **/
 Tile.prototype.hide = function(duration) {
 	duration = (duration !== undefined) ? duration : 0;
-	$("#" + this.div_id).animate({opacity:0,width:0,height:0},duration);
+	$("#" + this.div_id).animate({opacity:0,width:10,height:150},duration);
 	var self = this;
 	setTimeout(function(){$("#" + self.div_id).hide();},duration);
 };
