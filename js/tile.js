@@ -22,6 +22,7 @@ function Tile(options){
 	this.div_target = (options.div_target !== undefined) ? options.div_target : "body";
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "Tile" + Math.floor(Math.random()*1000000000);
 	this.text = (options.text !== undefined) ? options.text : "Title";
+	this.link = (options.link !== undefined) ? options.link : "";
 	this.style = (options.style !== undefined) ? options.style : "";
 	this.color = (options.color !== undefined) ? options.color : "#bdbdbd";
 	this.tile_type = (options.tile_type !== undefined) ? options.tile_type : "medium";
@@ -113,6 +114,7 @@ Tile.prototype.draw_bg = function() {
 			.attr("y",0)
 			.attr("rx",20)
 			.attr("ry",20)
+			.attr("xlink:href",this.link)
 			.attr("class","bg")
 			.attr("height", this.height)
 			.attr("width", this.width)
