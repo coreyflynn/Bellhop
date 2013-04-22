@@ -27,6 +27,9 @@ function Tile(options){
 	this.tile_type = (options.tile_type !== undefined) ? options.tile_type : "medium";
 	this.display = (options.display !== undefined) ? options.display : true;
 
+	// set the tile to open on initialization
+	this.open = true;
+
 	// initialize the tile
 	this.init_state = false;
 	if (this.display){
@@ -96,6 +99,9 @@ Tile.prototype.draw_bg = function() {
 	}else{
 		this.height = 300;
 	}
+	if (!this.open){
+		this.height = 150;
+	}
 
 	// set up a top level svg selection if the tile needs to be initialized
 	if (!this.init_state){
@@ -128,6 +134,7 @@ hides the tile
 Tile.prototype.hide = function(duration) {
 	duration = (duration !== undefined) ? duration : 0;
 	$("#" + this.div_id).animate({opacity:0.5,width:10,height:150},duration);
+	setTimeout(this.draw_bg,duration);
 };
 
 /**
