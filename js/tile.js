@@ -11,7 +11,7 @@ well as default styling
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
 @param {string}  [options.text]   the text to display on the panel, defaults to "Title"
-@param {string}  [options.style]  inline style specification, defaults to "#f0f0f0"
+@param {string}  [options.style]  inline style specification, defaults to "#bdbdbd"
 @param {string}  [options.color]  the background color of the tile, defuaults to 
 @param {string}  [options.tile_type]  tile type, can be "small", "medium", or "wide", defaults to "medium"
 @param {bool}  [options.display]  true to render the tile on object creation, false not to, defaults to true
@@ -23,7 +23,7 @@ function Tile(options){
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "Tile" + Math.floor(Math.random()*1000000000);
 	this.text = (options.text !== undefined) ? options.text : "Title";
 	this.style = (options.style !== undefined) ? options.style : "";
-	this.color = (options.color !== undefined) ? options.color : "#f0f0f0";
+	this.color = (options.color !== undefined) ? options.color : "#bdbdbd";
 	this.tile_type = (options.tile_type !== undefined) ? options.tile_type : "medium";
 	this.display = (options.display !== undefined) ? options.display : true;
 
