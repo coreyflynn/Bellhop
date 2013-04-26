@@ -300,7 +300,7 @@ function SC_Panel(options){
 
 		// add the top level svg element to the div and set up scales for the graph
 		this.svg=d3.select("#" + this.div_id + "_sc").append("svg").attr("class","sc_svg").attr("width",this.total_width).attr("height",this.height);
-		this.x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
+		this.x=d3.scale.linear().domain([-1,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
 		this.y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
 
 		// build an xAxis to call later on
