@@ -389,7 +389,7 @@ function SC_Panel(options){
 		this.points = this.svg.selectAll("circle").data(data);
 
 		// remove old data points
-		var x=d3.scale.linear().domain([0,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
+		var x=d3.scale.linear().domain([-1,1]).range([this.chart_offset + this.margin,this.chart_offset +  this.width - this.margin]);
 		var y=d3.scale.linear().domain([0,20]).range([this.height - this.margin,this.margin]);
 
 		// add points for each object in the array
