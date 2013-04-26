@@ -110,11 +110,13 @@ function Sig_Info_Table_Object(div_id,title,show_height){
   }
 
   function hide(){
-    $(this.div_id).hide();
+    $(this.div_id).animate({opacity:0},500);
+    setTimeout($(this.div_id).hide(),500);
   }
 
   function show(){
     $(this.div_id).show();
+    $(this.div_id).animate({opacity:1},500);
   }
 
   function collapse(){

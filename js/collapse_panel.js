@@ -126,7 +126,8 @@ Hides the Collapse_Panel
 @function 
 */
 Collapse_Panel.prototype.hide = function(){
-	$("#" + this.div_id).hide();
+	$("#" + this.div_id).animate({opacity:0},500);
+	setTimeout($("#" + this.div_id).hide(),500);
 };
 
 /**
@@ -136,6 +137,7 @@ Shows the Collapse_Panel
 */
 Collapse_Panel.prototype.show = function(){
 	$("#" + this.div_id).show();
+	$("#" + this.div_id).animate({opacity:1},500);
 };
 
 /**
