@@ -127,7 +127,7 @@ Hides the Collapse_Panel
 */
 Collapse_Panel.prototype.hide = function(){
 	$("#" + this.div_id).animate({opacity:0},500);
-	setTimeout($("#" + this.div_id).hide(),500);
+	setTimeout(function() {$("#" + this.div_id).hide();},500);
 };
 
 /**

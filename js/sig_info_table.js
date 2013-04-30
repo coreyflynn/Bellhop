@@ -111,7 +111,7 @@ function Sig_Info_Table_Object(div_id,title,show_height){
 
   function hide(){
     $(this.div_id).animate({opacity:0},500);
-    setTimeout($(this.div_id).hide(),500);
+    setTimeout(function() {$(this.div_id).hide();},500);
   }
 
   function show(){
