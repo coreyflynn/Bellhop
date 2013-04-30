@@ -238,9 +238,9 @@ ImageTile.prototype.draw_image = function() {
 ImageTextTile constructor
 @param {object} [options={}] options object to set properties
 @classdesc A Tile that extends ImageTile to add text 
-@class ImageTile
+@class ImageTextTile
 @constructor
-@extends Tile
+@extends ImageTile
 @param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
@@ -257,15 +257,15 @@ function ImageTextTile(options){
 	$(window).resize(function() {self.draw();} );
 	this.draw();
 }
-ImageTile.prototype = new ImageTile({display:false});
-ImageTile.prototype.constructor = ImageTextTile;
+ImageTextTile.prototype = new ImageTile({display:false});
+ImageTextTile.prototype.constructor = ImageTextTile;
 
 /**
 top level draw wrapper around draw\_bg and draw\_image and draw\_text
 @memberof ImageTextTile
 @method draw 
 **/
-ImageTile.prototype.draw = function() {
+ImageTextTile.prototype.draw = function() {
 	this.draw_bg();
 	this.draw_image();
 	this.draw_text();
