@@ -10,7 +10,6 @@ well as default styling
 @constructor
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
-@param {string}  [options.text]   the text to display on the panel, defaults to "Title"
 @param {string}  [options.style]  inline style specification, defaults to "#bdbdbd"
 @param {string}  [options.color]  the background color of the tile, defuaults to 
 @param {string}  [options.tile_type]  tile type, can be "small", "medium", or "wide", defaults to "medium"
@@ -21,7 +20,6 @@ function Tile(options){
 	options = (options !== undefined) ? options : {};
 	this.div_target = (options.div_target !== undefined) ? options.div_target : "body";
 	this.div_id = (options.div_id !== undefined) ? options.div_id : "Tile" + Math.floor(Math.random()*1000000000);
-	this.text = (options.text !== undefined) ? options.text : "Title";
 	this.link = (options.link !== undefined) ? options.link : "";
 	this.style = (options.style !== undefined) ? options.style : "";
 	this.color = (options.color !== undefined) ? options.color : "#bdbdbd";
@@ -176,7 +174,6 @@ ImageTile constructor
 @param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
-@param {string}  [options.text] the text to display on the panel, defaults to "Title"
 @param {string}  [options.style] inline style specification, defaults to "#f0f0f0"
 @param {string}  [options.color] the background color of the tile, defuaults to 
 @param {string}  [options.tile_type] tile type, can be "small", "medium", or "wide", defaults to "medium"
@@ -235,4 +232,79 @@ ImageTile.prototype.draw_image = function() {
 		.attr("y",this.height/2 - this.image_size/2)
 		.attr("height",this.image_size)
 		.attr("width",this.image_size);
+};
+
+/**
+ImageTextTile constructor
+@param {object} [options={}] options object to set properties
+@classdesc A Tile that extends ImageTile to add text 
+@class ImageTile
+@constructor
+@extends Tile
+@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
+@param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
+@param {string}  [options.text] the text to display on the panel, defaults to "Title"
+@param {string}  [options.style] inline style specification, defaults to "#f0f0f0"
+@param {string}  [options.color] the background color of the tile, defuaults to 
+@param {string}  [options.tile_type] tile type, can be "small", "medium", or "wide", defaults to "medium"
+
+**/
+function ImageTextTile(options){
+	this.title = (options.title !== undefined) ? options.title : "Title";
+	ImageTile.apply(this,arguments);
+	var self = this;
+	$(window).resize(function() {self.draw();} );
+	this.draw();
+}
+ImageTile.prototype = new ImageTile({display:false});
+ImageTile.prototype.constructor = ImageTextTile;
+
+/**
+top level draw wrapper around draw\_bg and draw\_image and draw\_text
+@memberof ImageTextTile
+@method draw 
+**/
+ImageTile.prototype.draw = function() {
+	this.draw_bg();
+	this.draw_image();
+	this.draw_text();
+};
+
+/**
+draws the tile's text using d3.js
+@memberof ImageTextTile
+@method draw_text 
+**/
+ImageTextTile.prototype.draw_text = function() {
+	// get the correct height and width to draw
+	this.width = $("#" + this.div_id).outerWidth();
+	if (this.tile_type == "small"){
+		this.height = 150;
+	}else{
+		this.height = 300;
+	}
+
+	// set up a top level svg selection if the tile needs to be initialized
+	if (!this.init_state){
+		this.svg=d3.select("#" + this.div_id).append("svg")
+			.attr("class",this.div_id + "_tile_svg")
+			.attr("width",this.width)
+			.attr("height",this.height);
+	}
+
+	// (re)draw the text
+	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
+	this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
+		.enter().append("foreignObject")
+		.attr("class","tile_text")
+		.attr("x",this.width/3*2)
+		.attr("y",this.height/10*9)
+		.attr("height",this.height/10)
+		.attr("width",this.width/3)
+		.append("xhtml:body")
+		.style("font", "20px 'Helvetica Neue'")
+		.style("background-color","#f0f0f0")
+		.html(function(d) {return "<p>" + d + "</p>";});
+
 };
