@@ -104,14 +104,33 @@ Tile.prototype.draw_bg = function() {
 			.attr("class",this.div_id + "_tile_svg")
 			.attr("width",this.width)
 			.attr("height",this.height);
-	}
 
-	// (re)draw the background
-	this.svg.selectAll("rect.bg").data([]).exit().remove();
-	this.svg.selectAll("rect.bg").data([1])
+		// add a group to drawing elements
+		this.svg.append("g").attr("class", "draw_layer");
+
+		// add a group to link elements
+		this.svg.append("g").attr("class", "link_layer");
+
+		// add the link
+		this.svg.select('link_layer').selectAll("rect.link_rect").data([1])
 			.enter().append("a")
 			.attr("xlink:href",this.link)
 			.append("rect")
+			.attr("x",0)
+			.attr("y",0)
+			.attr("rx",20)
+			.attr("ry",20)
+			.attr("class","link_rect")
+			.attr("height", this.height)
+			.attr("width", this.width)
+			.attr("fill", this.color)
+			.attr("opacity",0);
+	}
+
+	// (re)draw the background
+	this.svg.select('draw_layer').selectAll("rect.bg").data([]).exit().remove();
+	this.svg.select('draw_layer').selectAll("rect.bg").data([1])
+			.enter().append("rect")
 			.attr("x",0)
 			.attr("y",0)
 			.attr("rx",20)
@@ -207,8 +226,8 @@ ImageTile.prototype.draw_image = function() {
 
 	// (re)draw the image
 	this.image_size = this.height - 50;
-	this.svg.selectAll("image." + this.div_id).data([]).exit().remove();
-	this.svg.selectAll("image." + this.div_id).data([1])
+	this.svg.select('draw_layer').selectAll("image." + this.div_id).data([]).exit().remove();
+	this.svg.select('draw_layer').selectAll("image." + this.div_id).data([1])
 		.enter().append("image")
 		.attr("xlink:href",this.image)
 		.attr("class",this.div_id)
