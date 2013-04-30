@@ -109,9 +109,10 @@ function Sig_Info_Table_Object(div_id,title,show_height){
     this.grid.render();
   }
 
-  function hide(){
-    $(this.div_id).animate({opacity:0},500);
-    setTimeout($(this.div_id).hide(),500);
+  function hide(duration){
+    duration = (duration !== undefined) ? duration : 0;
+    $(this.div_id).animate({opacity:0},duration);
+    $(this.div_id).hide();
   }
 
   function show(){

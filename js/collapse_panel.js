@@ -123,11 +123,13 @@ Collapse_Panel.prototype.expand = function(duration){
 /**
 Hides the Collapse_Panel
 @memberof Collapse_Panel
-@function 
+@function
+@param {int} duration the length of the transition in ms. defualts to 0
 */
-Collapse_Panel.prototype.hide = function(){
-	$("#" + this.div_id).animate({opacity:0},500);
-	setTimeout($("#" + this.div_id).hide(),500);
+Collapse_Panel.prototype.hide = function(duration){
+	duration = (duration !== undefined) ? duration : 0;
+	$("#" + this.div_id).animate({opacity:0},duration);
+	$("#" + this.div_id).hide();
 };
 
 /**
