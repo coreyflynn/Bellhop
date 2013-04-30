@@ -128,8 +128,8 @@ Tile.prototype.draw_bg = function() {
 	}
 
 	// (re)draw the background
-	this.svg.select('draw_layer').selectAll("rect.bg").data([]).exit().remove();
-	this.svg.select('draw_layer').selectAll("rect.bg").data([1])
+	this.svg.select('.draw_layer').selectAll("rect.bg").data([]).exit().remove();
+	this.svg.select('.draw_layer').selectAll("rect.bg").data([1])
 			.enter().append("rect")
 			.attr("x",0)
 			.attr("y",0)
@@ -226,8 +226,8 @@ ImageTile.prototype.draw_image = function() {
 
 	// (re)draw the image
 	this.image_size = this.height - 50;
-	this.svg.select('draw_layer').selectAll("image." + this.div_id).data([]).exit().remove();
-	this.svg.select('draw_layer').selectAll("image." + this.div_id).data([1])
+	this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([]).exit().remove();
+	this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([1])
 		.enter().append("image")
 		.attr("xlink:href",this.image)
 		.attr("class",this.div_id)
