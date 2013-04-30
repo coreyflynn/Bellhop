@@ -304,7 +304,7 @@ ImageTextTile.prototype.draw_text = function() {
 		.attr("width",this.width/3 - 20)
 		.append("xhtml:body")
 		.style("font", "20px 'Helvetica Neue'")
-		.style("background-color","#f0f0f0")
-		.html(function(d) {return '<p style="background-color:' + this.color + '>' + d + "</p>";});
+		.style("background-color",this.color)
+		.html(function(d) {return "<p" + d + "</p>";});
 
 };
