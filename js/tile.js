@@ -300,11 +300,11 @@ ImageTextTile.prototype.draw_text = function() {
 		.attr("class","tile_text")
 		.attr("x",this.width/3*2)
 		.attr("y",this.height/10*9)
-		.attr("height",this.height/10)
+		.attr("height",this.height/10 - 20)
 		.attr("width",this.width/3 - 20)
 		.append("xhtml:body")
 		.style("font", "20px 'Helvetica Neue'")
 		.style("background-color",this.color)
-		.html(function(d) {return "<p" + d + "</p>";});
+		.html(function(d) {return "<p>" + d + "</p>";});
 
 };
