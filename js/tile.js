@@ -112,7 +112,7 @@ Tile.prototype.draw_bg = function() {
 		this.svg.append("g").attr("class", "link_layer");
 
 		// add the link
-		this.svg.select('link_layer').selectAll("rect.link_rect").data([1])
+		this.svg.select('.link_layer').selectAll("rect.link_rect").data([1])
 			.enter().append("a")
 			.attr("xlink:href",this.link)
 			.append("rect")
