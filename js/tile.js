@@ -283,9 +283,9 @@ AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	setInterval(function(){
 		console.log('animate!');
 		self.image_selection.transition().duration(duration/2)
-			.attr("y",1);
+			.attr("y",this.image_size + 1);
 		self.image_selection
-			.attr("y",this.height - this.image_size -1);
+			.attr("y",this.height - this.image_size - 1);
 		self.image_selection.transition().duration(duration/2)
 			.attr("y",this.height/2 - this.image_size/2);
 	},frequency);
