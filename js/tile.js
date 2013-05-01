@@ -469,7 +469,7 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	// (re)draw the text
 	var x,y,height,width,html;
 	x = 20;
-	y = this.height + 10;
+	y = this.height;
 	height = this.height/10 * 5;
 	width = this.width - 40;
 	if (this.tile_type == "wide"){
