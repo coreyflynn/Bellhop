@@ -44,8 +44,9 @@ Collapse_Panel.prototype.init = function(){
 	$(this.div_target).append(this.html);
 	$(this.div_target).css("padding-bottom", "2px");
 
-	// $("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(); });
 	$("#" + this.div_id + "_top_panel").click(function (evt) { self.buttonCallback(); });
+	$("#" + this.div_id + "_top_panel").hover(function () { $("#" + this.div_id).css('background-color','#d0d0d0"'); },
+											  function () { $("#" + this.div_id).css('background-color','#f0f0f0"'); });
 
 	this.close_height = $("#" + this.div_id).outerHeight();
 	this.open_height = $("#" + this.div_id).outerHeight();
