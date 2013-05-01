@@ -45,7 +45,7 @@ Collapse_Panel.prototype.init = function(){
 	$(this.div_target).css("padding-bottom", "2px");
 
 	$("#" + this.div_id + "_top_panel").click(function (evt) { self.buttonCallback(); });
-	$("#" + this.div_id + "_top_panel").mouseover(function (evt) { $("#" + this.div_id).css("background-color","red"); });
+	$("#" + this.div_id + "_top_panel").mouseenter(function (evt) { $("#" + this.div_id).css("background-color","red"); });
 
 	this.close_height = $("#" + this.div_id).outerHeight();
 	this.open_height = $("#" + this.div_id).outerHeight();
