@@ -281,9 +281,14 @@ AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	frequency = (frequency !== undefined) ? frequency : 5000;
 	var self = this;
 	setInterval(function(){
+		console.log('animate!');
 		self.svg.select('.draw_layer').selectAll("image." + this.div_id)
 			.transition().duration(duration/2)
-			.attr("y",0 - this.image_size/2 - 10);
+			.attr("y",0 - this.image_size/2 - 10)
+			.transition().duration(0)
+			.attr("y",this.height + this.image_size/2 + 10)
+			.transition().duration(duration/2)
+			.attr("y",this.height/2 - this.image_size/2);
 	},frequency);
 };
 
