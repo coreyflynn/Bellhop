@@ -103,7 +103,7 @@ Tile.prototype.draw_bg = function(bg_height) {
 		this.svg=d3.select("#" + this.div_id).append("svg")
 			.attr("class",this.div_id + "_tile_svg")
 			.attr("width",this.width)
-			.attr("height",this.height);
+			.attr("height",this.bg_height);
 
 		// add a group to drawing elements
 		this.svg.append("g").attr("class", "draw_layer");
