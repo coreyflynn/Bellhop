@@ -255,6 +255,7 @@ function AnimatedImageTile(options){
 	var self = this;
 	$(window).resize(function() {self.draw();} );
 	this.draw();
+	this.start_animation();
 }
 AnimatedImageTile.prototype = new ImageTile({display:false});
 AnimatedImageTile.prototype.constructor = AnimatedImageTile;
@@ -273,21 +274,20 @@ AnimatedImageTile.prototype.draw = function() {
 starts periodic animation of the Image on the Tile
 @memberof AnimatedImageTile
 @method start_animation 
-@param {int}  [duration=500] duration the length of the animation in milliseconds
-@param {int}  [frequency=5000] frequency the frequency of the animation in milliseconds
+@param {int}  [duration=2000] duration the length of the animation in milliseconds
+@param {int}  [frequency= 10000 to 20000] frequency the frequency of the animation in milliseconds
 **/
 AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
-	duration = (duration !== undefined) ? duration : 1000;
-	frequency = (frequency !== undefined) ? frequency : 5000;
+	duration = (duration !== undefined) ? duration : 2000;
+	frequency = (frequency !== undefined) ? frequency : 10000 + Math.random() * 10000;
 	var self = this;
 	setInterval(function(){
-		console.log('animate!');
 		self.image_selection.transition().duration(duration/2)
-			.attr("y",1);
-		self.image_selection
-			.attr("y",this.height - this.image_size -1);
-		self.image_selection.transition().duration(duration/2)
-			.attr("y",this.height/2 - this.image_size/2);
+			.attr("y",-self.image_size - 10)
+			.transition().duration(1)
+			.attr("y",self.height + self.image_size + 10)
+			.transition().duration(duration/2)
+			.attr("y",self.height/2 - self.image_size/2);
 	},frequency);
 };
 
@@ -352,18 +352,33 @@ ImageTextTile.prototype.draw_text = function() {
 	}
 
 	// (re)draw the text
-	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
-	this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
-		.enter().append("foreignObject")
-		.attr("class","tile_text")
-		.attr("x",this.width/3*2)
-		.attr("y",this.height/10*9)
-		.attr("height",this.height/10)
-		.attr("width",this.width/3 - 20)
-		.append("xhtml:body")
-		.style("font", "20px 'Helvetica Neue'")
-		.style("background-color",this.color)
-		.html(function(d) {return "<p>" + d + "</p>";});
+	if (this.tile_type == "wide" || this.tile_type == "medium"){
+		if (this.tile_type == "wide"){
+			var x = this.width/3*2;
+			var y = this.height/10*5;
+			var height = this.height/10 * 5;
+			var width = this.width/3 - 20;
+			var html = '<h2>' + this.title + '</h2>'
+		}
+		if (this.tile_type == "medium"){
+			var x = 20;
+			var y = this.height/10*8.5;
+			var height = this.height/10 * 1.5;
+			var width = this.width - 40;
+			var html = '<h3>' + this.title + '</h3>'
+		}
+		this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
+		this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
+			.enter().append("foreignObject")
+			.attr("class","tile_text")
+			.attr("x",x)
+			.attr("y",y)
+			.attr("height",height)
+			.attr("width",width)
+			.append("xhtml:body")
+			.style("background-color",this.color)
+			.html(html);
+	}
 
 };
 

@@ -21,9 +21,11 @@ function Sig_Info_Table_Object(div_id,title,show_height){
 
   $(this.div_id).append(header_html);
   $(this.div_id).css("padding-bottom", "2px");
+  $(this.div_id + "_head").hover(function () { $(self.div_id + "_head").css("background-color","#bdbdbd"); },
+                        function () { $(self.div_id + "_head").css("background-color","#f0f0f0"); });
 
   var self = this;
-  $(this.div_id + '_button').click(function (evt) { self.buttonCallback(evt); });
+  $(this.div_id + '_head').click(function (evt) { self.buttonCallback(evt); });
   $(this.div_id).append('<div id="' +
               this.div_id.split("#")[1] +
               '_SIT" style="height:' +
