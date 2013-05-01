@@ -352,6 +352,7 @@ ImageTextTile.prototype.draw_text = function() {
 	}
 
 	// (re)draw the text
+	console.log(this.title == "wide" || this.tile_type == "medium")
 	if (this.title == "wide" || this.tile_type == "medium"){
 		if (this.tile_type == "wide"){
 			var x = this.width/3*2;
