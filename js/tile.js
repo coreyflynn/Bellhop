@@ -255,6 +255,7 @@ function AnimatedImageTile(options){
 	var self = this;
 	$(window).resize(function() {self.draw();} );
 	this.draw();
+	this.start_animation();
 }
 AnimatedImageTile.prototype = new ImageTile({display:false});
 AnimatedImageTile.prototype.constructor = AnimatedImageTile;
@@ -277,11 +278,10 @@ starts periodic animation of the Image on the Tile
 @param {int}  [frequency=5000] frequency the frequency of the animation in milliseconds
 **/
 AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
-	duration = (duration !== undefined) ? duration : 1000;
-	frequency = (frequency !== undefined) ? frequency : 5000;
+	duration = (duration !== undefined) ? duration : 2000;
+	frequency = (frequency !== undefined) ? frequency : 10000;
 	var self = this;
 	setInterval(function(){
-		console.log('animate!');
 		self.image_selection.transition().duration(duration/2)
 			.attr("y",-self.image_size - 10)
 			.transition().duration(1)
