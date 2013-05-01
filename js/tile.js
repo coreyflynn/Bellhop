@@ -366,3 +366,29 @@ ImageTextTile.prototype.draw_text = function() {
 		.html(function(d) {return "<p>" + d + "</p>";});
 
 };
+
+/**
+AnimatedImageTextTile constructor
+@param {object} [options={}] options object to set properties
+@classdesc A Tile that extends ImageTile to add text that animates on mouseover
+@class AnimatedImageTextTile
+@constructor
+@extends ImageTile
+@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
+@param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
+@param {string}  [options.text] the text to display on the panel, defaults to "Title"
+@param {string}  [options.style] inline style specification, defaults to "#f0f0f0"
+@param {string}  [options.color] the background color of the tile, defuaults to 
+@param {string}  [options.tile_type] tile type, can be "small", "medium", or "wide", defaults to "medium"
+
+**/
+function AnimatedImageTextTile(options){
+	this.title = (options.title !== undefined) ? options.title : "Title";
+	ImageTile.apply(this,arguments);
+	var self = this;
+	$(window).resize(function() {self.draw();} );
+	this.draw();
+}
+AnimatedImageTextTile.prototype = new ImageTile({display:false});
+AnimatedImageTextTile.prototype.constructor = AnimatedImageTextTile;
