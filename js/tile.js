@@ -362,8 +362,8 @@ ImageTextTile.prototype.draw_text = function() {
 		}
 		if (this.tile_type == "medium"){
 			var x = 20;
-			var y = this.height/10*9;
-			var height = this.height/10;
+			var y = this.height/10*8;
+			var height = this.height/10 * 2;
 			var width = this.width - 40;
 			var html = '<h3>' + this.title + '</h3>'
 		}
