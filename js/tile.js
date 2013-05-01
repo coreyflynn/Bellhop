@@ -85,10 +85,9 @@ Tile.prototype.inject = function() {
 /**
 draws the tiles background using d3.js
 @memberof Tile
-@param {int} [height=150 or 300] height the height of the background to draw. defaults to either 150 or 300 depending on the format of the tile
 @method draw_bg 
 **/
-Tile.prototype.draw_bg = function(bg_height) {
+Tile.prototype.draw_bg = function() {
 	// get the correct height and width to draw
 	this.width = $("#" + this.div_id).outerWidth();
 	if (this.tile_type == "small"){
@@ -96,14 +95,13 @@ Tile.prototype.draw_bg = function(bg_height) {
 	}else{
 		this.height = 300;
 	}
-	this.bg_height = (bg_height !== undefined) ? options.bg_height : this.height;
 
 	// set up a top level svg selection if the tile needs to be initialized
 	if (!this.init_state){
 		this.svg=d3.select("#" + this.div_id).append("svg")
 			.attr("class",this.div_id + "_tile_svg")
 			.attr("width",this.width)
-			.attr("height",this.bg_height);
+			.attr("height",this.height);
 
 		// add a group to drawing elements
 		this.svg.append("g").attr("class", "draw_layer");
@@ -136,7 +134,7 @@ Tile.prototype.draw_bg = function(bg_height) {
 			.attr("rx",20)
 			.attr("ry",20)
 			.attr("class","bg")
-			.attr("height", this.bg_height)
+			.attr("height", this.height)
 			.attr("width", this.width)
 			.attr("fill", this.color);
 };
@@ -267,11 +265,6 @@ top level draw wrapper around draw\_bg and draw\_image
 @method draw 
 **/
 AnimatedImageTile.prototype.draw = function() {
-	if (this.tile_type == "small"){
-		this.bg_height = 300;
-	}else{
-		this.bg_height = 600;
-	}
 	this.draw_bg();
 	this.draw_image();
 };
@@ -306,7 +299,7 @@ AnimatedImageTile.prototype.draw_image = function() {
 		.attr("xlink:href",this.image)
 		.attr("class",this.div_id)
 		.attr("x",this.width/2 - this.image_size/2)
-		.attr("y",this.height/4 - this.image_size/2)
+		.attr("y",this.height/2 - this.image_size/2)
 		.attr("height",this.image_size)
 		.attr("width",this.image_size);
 };
