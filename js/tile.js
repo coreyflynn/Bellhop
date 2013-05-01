@@ -465,30 +465,30 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	}
 
 	// (re)draw the text
-	if (this.tile_type == "wide" || this.tile_type == "medium"){
-		var x,y,height,width,html;
-		x = 20;
-		y = this.height + 10;
-		height = this.height/10 * 5;
-		width = this.width - 40;
-		if (this.tile_type == "wide"){
-			html = '<h2>' + this.title + '</h2>';
-		}
-		if (this.tile_type == "medium"){
-			html = '<h3>' + this.title + '</h3>';
-		}
-		this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
-		this.text_selection = this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
-			.enter().append("foreignObject")
-			.attr("class","tile_text")
-			.attr("x",x)
-			.attr("y",y)
-			.attr("height",height)
-			.attr("width",width)
-			.append("xhtml:body")
-			.style("background-color",this.color)
-			.html(html);
+	var x,y,height,width,html;
+	x = 20;
+	y = this.height + 10;
+	height = this.height/10 * 5;
+	width = this.width - 40;
+	if (this.tile_type == "wide"){
+		html = '<h2>' + this.title + '</h2>';
 	}
+	if (this.tile_type == "medium" || this.tile_type == "small"){
+		html = '<h3>' + this.title + '</h3>';
+	}
+	this.text_selection = this.svg.select('.draw_layer').selectAll('.tile_text');
+	this.text_selection.data([]).exit().remove();
+	this.text_selection.data([this.title])
+		.enter().append("foreignObject")
+		.attr("class","tile_text")
+		.attr("x",x)
+		.attr("y",y)
+		.attr("height",height)
+		.attr("width",width)
+		.append("xhtml:body")
+		.style("background-color","#ffffff")
+		.style("opacity",0.5)
+		.html(html);
 
 };
 
