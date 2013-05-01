@@ -279,8 +279,9 @@ starts periodic animation of the Image on the Tile
 AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	duration = (duration !== undefined) ? duration : 1000;
 	frequency = (frequency !== undefined) ? frequency : 5000;
+	var self = this;
 	setInterval(function(){
-		this.svg.select('.draw_layer').selectAll("image." + this.div_id)
+		self.svg.select('.draw_layer').selectAll("image." + this.div_id)
 			.transition().duration(duration/2)
 			.attr("y",0 - this.image_size/2 - 10)
 			.transition().duration(0)
