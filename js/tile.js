@@ -476,8 +476,8 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	if (this.tile_type == "medium" || this.tile_type == "small"){
 		html = '<h3>' + this.title + '</h3>';
 	}
+	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
 	this.text_selection = this.svg.select('.draw_layer').selectAll('.tile_text');
-	this.text_selection.data([]).exit().remove();
 	this.text_selection.data([this.title])
 		.enter().append("foreignObject")
 		.attr("class","tile_text")
