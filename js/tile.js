@@ -224,7 +224,7 @@ ImageTile.prototype.draw_image = function() {
 	// (re)draw the image
 	this.image_size = this.height - 50;
 	this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([]).exit().remove();
-	this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([1])
+	this.image_selection = this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([1])
 		.enter().append("image")
 		.attr("xlink:href",this.image)
 		.attr("class",this.div_id)
@@ -282,8 +282,7 @@ AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	var self = this;
 	setInterval(function(){
 		console.log('animate!');
-		self.svg.select('.draw_layer').selectAll("image." + this.div_id)
-			.transition().duration(duration/2)
+		this.image_selection.transition().duration(duration/2)
 			.attr("y",0 - this.image_size/2 - 10)
 			.transition().duration(0)
 			.attr("y",this.height + this.image_size/2 + 10)
