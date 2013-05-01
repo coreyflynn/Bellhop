@@ -361,8 +361,6 @@ ImageTextTile.prototype.draw_text = function() {
 		.attr("height",this.height/10)
 		.attr("width",this.width/3 - 20)
 		.append("xhtml:body")
-		.style("font", "20px 'Helvetica Neue'")
-		.style("background-color",this.color)
 		.html(function(d) {return "<p>" + d + "</p>";});
 
 };
