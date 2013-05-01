@@ -283,7 +283,11 @@ AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	setInterval(function(){
 		console.log('animate!');
 		self.image_selection.transition().duration(duration/2)
-			.attr("y",0 - this.image_size/2 - 10)
+			.attr("y",0)
+			.transition().duration(0)
+			.attr("y",this.height)
+			.transition().duration(duration/2)
+			.attr("y",this.height/2 - this.image_size/2);
 	},frequency);
 };
 
