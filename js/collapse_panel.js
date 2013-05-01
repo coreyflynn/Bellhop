@@ -44,7 +44,7 @@ Collapse_Panel.prototype.init = function(){
 	$(this.div_target).append(this.html);
 	$(this.div_target).css("padding-bottom", "2px");
 
-	$("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(); });
+	// $("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(); });
 	$("#" + this.div_id + "_top_panel").click(function (evt) { self.buttonCallback(); });
 
 	this.close_height = $("#" + this.div_id).outerHeight();
