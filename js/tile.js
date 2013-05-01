@@ -357,11 +357,11 @@ ImageTextTile.prototype.draw_text = function() {
 		.enter().append("foreignObject")
 		.attr("class","tile_text")
 		.attr("x",this.width/3*2)
-		.attr("y",this.height/10*9)
-		.attr("height",this.height/10)
+		.attr("y",this.height/10*7)
+		.attr("height",this.height/10 * 3)
 		.attr("width",this.width/3 - 20)
 		.append("xhtml:body")
 		.style("background-color",this.color)
-		.html(function(d) {return '<p class="lead">' + d + '</p>';});
+		.html(function(d) {return '<h2>' + d + '</h2>';});
 
 };
