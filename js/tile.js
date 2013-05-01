@@ -274,12 +274,12 @@ AnimatedImageTile.prototype.draw = function() {
 starts periodic animation of the Image on the Tile
 @memberof AnimatedImageTile
 @method start_animation 
-@param {int}  [duration=500] duration the length of the animation in milliseconds
-@param {int}  [frequency=5000] frequency the frequency of the animation in milliseconds
+@param {int}  [duration=2000] duration the length of the animation in milliseconds
+@param {int}  [frequency= 10000 to 20000] frequency the frequency of the animation in milliseconds
 **/
 AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	duration = (duration !== undefined) ? duration : 2000;
-	frequency = (frequency !== undefined) ? frequency : 10000;
+	frequency = (frequency !== undefined) ? frequency : 10000 + Math.random() * 10000;
 	var self = this;
 	setInterval(function(){
 		self.image_selection.transition().duration(duration/2)
