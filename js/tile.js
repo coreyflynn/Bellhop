@@ -419,8 +419,9 @@ AnimatedImageTextTile.prototype.draw = function() {
 	this.draw_image();
 	this.draw_text();
 	//add callbacks to expose the display of the animated text
-	this.link_selection.on('mouseover',function(){this.show_text();});
-	this.link_selection.on('mouseout',function(){this.hide_text();});
+	var self = this;
+	this.link_selection.on('mouseover',function(){self.show_text();});
+	this.link_selection.on('mouseout',function(){self.hide_text();});
 };
 
 /**
