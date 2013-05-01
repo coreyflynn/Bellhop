@@ -355,8 +355,8 @@ ImageTextTile.prototype.draw_text = function() {
 	if (this.tile_type == "wide" || this.tile_type == "medium"){
 		if (this.tile_type == "wide"){
 			var x = this.width/3*2;
-			var y = this.height/10*7;
-			var height = this.height/10 * 3;
+			var y = this.height/10*5;
+			var height = this.height/10 * 5;
 			var width = this.width/3 - 20;
 			var html = '<h2>' + this.title + '</h2>'
 		}
