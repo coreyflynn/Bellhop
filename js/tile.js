@@ -283,10 +283,10 @@ AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
 	setInterval(function(){
 		console.log('animate!');
 		self.image_selection.transition().duration(duration/2)
-			.attr("y",self.image_size + 1);
-		self.image_selection
-			.attr("y",self.height - self.image_size - 1);
-		self.image_selection.transition().duration(duration/2)
+			.attr("y",-self.image_size - 10);
+			.transition.duration(1)
+			.attr("y",self.height + self.image_size + 10);
+			.transition.duration(duration/2)
 			.attr("y",self.height/2 - self.image_size/2);
 	},frequency);
 };
