@@ -430,6 +430,7 @@ show the text in the Tile
 @method show_text
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
+	console.log("show");
 	this.text_selection.transition().duration(500).attr("y",this.height/2);
 };
 
@@ -439,6 +440,7 @@ hide the text in the Tile
 @method hide_text 
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
+	console.log("hide");
 	this.text_selection.transition().duration(500).attr("y",this.height + 10);
 };
 
