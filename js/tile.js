@@ -256,7 +256,7 @@ function AnimatedImageTile(options){
 	$(window).resize(function() {self.draw();} );
 	this.draw();
 }
-AnimatedImageTile.prototype = new Tile({display:false});
+AnimatedImageTile.prototype = new ImageTile({display:false});
 AnimatedImageTile.prototype.constructor = AnimatedImageTile;
 
 /**
