@@ -23,7 +23,7 @@ function Collapse_Panel(options){
 	this.style = (options.style !== undefined) ? options.style : "background-color:#f0f0f0";
 	this.panels = (options.panels !== undefined) ? options.panels : [];
 	this.html = ['<div class="row-fluid" id="' + this.div_id + '" class="span12" style=' + this.style + '>',
-				'<div class="row-fluid">',
+				'<div class="row-fluid" id="' + this.div_id + '_top_panel">',
 				'<span class="span1"><img style="max-width:' + this.image_max + 'px;max-height:' + this.image_max + 'px;" src="' + this.image + '"/></span>',
 				'<h3 class="span10">' + this.text + '</h3>',
 				'<span class="span1"><img id="' + this.div_id + '_button" style="max-width:60px;max-height:60px;" src="http://coreyflynn.github.com/Bellhop/img/plus_round_small_blue.png"/></span>',
@@ -45,7 +45,7 @@ Collapse_Panel.prototype.init = function(){
 	$(this.div_target).css("padding-bottom", "2px");
 
 	$("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(); });
-	$("#" + this.div_id).click(function (evt) { self.buttonCallback(); });
+	$("#" + this.div_id + "_top_panel").click(function (evt) { self.buttonCallback(); });
 
 	this.close_height = $("#" + this.div_id).outerHeight();
 	this.open_height = $("#" + this.div_id).outerHeight();
