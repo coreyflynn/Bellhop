@@ -45,6 +45,7 @@ Collapse_Panel.prototype.init = function(){
 	$(this.div_target).css("padding-bottom", "2px");
 
 	$("#" + this.div_id + "_button").click(function (evt) { self.buttonCallback(); });
+	$("#" + this.div_id).click(function (evt) { self.buttonCallback(); });
 
 	this.close_height = $("#" + this.div_id).outerHeight();
 	this.open_height = $("#" + this.div_id).outerHeight();
