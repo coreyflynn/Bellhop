@@ -352,16 +352,32 @@ ImageTextTile.prototype.draw_text = function() {
 	}
 
 	// (re)draw the text
-	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
-	this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
-		.enter().append("foreignObject")
-		.attr("class","tile_text")
-		.attr("x",this.width/3*2)
-		.attr("y",this.height/10*7)
-		.attr("height",this.height/10 * 3)
-		.attr("width",this.width/3 - 20)
-		.append("xhtml:body")
-		.style("background-color",this.color)
-		.html(function(d) {return '<h2>' + d + '</h2>';});
+	if (this.title == "wide" || this.tile_type == "medium"){
+		if (this.tile_type == "wide"){
+			var x = this.width/3*2;
+			var y = this.height/10*7;
+			var height = this.height/10 * 3;
+			var width = this.width/3 - 20;
+			var html = '<h2>' + this.title + '</h2>'
+		}
+		if (this.tile_type == "medium"){
+			var x = 20;
+			var y = this.height/10*9;
+			var height = this.height/10;
+			var width = this.width - 40;
+			var html = '<h3>' + this.title + '</h3>'
+		}
+		this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
+		this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
+			.enter().append("foreignObject")
+			.attr("class","tile_text")
+			.attr("x",x)
+			.attr("y",y)
+			.attr("height",height)
+			.attr("width",width)
+			.append("xhtml:body")
+			.style("background-color",this.color)
+			.html(html);
+	}
 
 };
