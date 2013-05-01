@@ -96,7 +96,7 @@ Tile.prototype.draw_bg = function(bg_height) {
 	}else{
 		this.height = 300;
 	}
-	this.bg_height = (options.bg_height !== undefined) ? options.bg_height : this.height;
+	this.bg_height = (bg_height !== undefined) ? options.bg_height : this.height;
 
 	// set up a top level svg selection if the tile needs to be initialized
 	if (!this.init_state){
