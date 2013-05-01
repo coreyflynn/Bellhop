@@ -270,39 +270,26 @@ AnimatedImageTile.prototype.draw = function() {
 };
 
 /**
-draws the tile's image using d3.js
+starts periodic animation of the Image on the Tile
 @memberof AnimatedImageTile
-@method draw_image 
+@method start_animation 
+@param {int}  [duration=500] duration the length of the animation in milliseconds
+@param {int}  [frequency=5000] frequency the frequency of the animation in milliseconds
 **/
-AnimatedImageTile.prototype.draw_image = function() {
-	// get the correct height and width to draw
-	this.width = $("#" + this.div_id).outerWidth();
-	if (this.tile_type == "small"){
-		this.height = 150;
-	}else{
-		this.height = 300;
-	}
-
-	// set up a top level svg selection if the tile needs to be initialized
-	if (!this.init_state){
-		this.svg=d3.select("#" + this.div_id).append("svg")
-			.attr("class",this.div_id + "_tile_svg")
-			.attr("width",this.width)
-			.attr("height",this.height);
-	}
-
-	// (re)draw the image
-	this.image_size = this.height - 50;
-	this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([]).exit().remove();
-	this.svg.select('.draw_layer').selectAll("image." + this.div_id).data([1])
-		.enter().append("image")
-		.attr("xlink:href",this.image)
-		.attr("class",this.div_id)
-		.attr("x",this.width/2 - this.image_size/2)
-		.attr("y",this.height/2 - this.image_size/2)
-		.attr("height",this.image_size)
-		.attr("width",this.image_size);
+AnimatedImageTile.prototype.start_animation = function(duration,frequency) {
+	duration = (duration !== undefined) ? duration : 1000;
+	frequency = (frequency !== undefined) ? frequency : 5000;
+	setInterval(function(){
+		this.svg.select('.draw_layer').selectAll("image." + this.div_id)
+			.transition().duration(duration/2)
+			.attr("y",0 - this.image_size/2 - 10)
+			.transition().duration(0)
+			.attr("y",this.height + this.image_size/2 + 10)
+			.transition().duration(duration/2)
+			.attr("y",this.height/2 - this.image_size/2);
+	},frequency);
 };
+
 
 /**
 ImageTextTile constructor
