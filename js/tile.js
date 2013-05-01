@@ -110,8 +110,8 @@ Tile.prototype.draw_bg = function() {
 		this.svg.append("g").attr("class", "link_layer");
 
 		// add the link
-		this.svg.select('.link_layer').selectAll("rect.link_rect").data([1])
-			.enter().append("a")
+		this.link_selection = this.svg.select('.link_layer').selectAll("rect.link_rect").data([1]);
+		this.link_selection.enter().append("a")
 			.attr("xlink:href",this.link)
 			.append("rect")
 			.attr("x",0)
@@ -353,19 +353,20 @@ ImageTextTile.prototype.draw_text = function() {
 
 	// (re)draw the text
 	if (this.tile_type == "wide" || this.tile_type == "medium"){
+		var x,y,height,width,html;
 		if (this.tile_type == "wide"){
-			var x = this.width/3*2;
-			var y = this.height/10*5;
-			var height = this.height/10 * 5;
-			var width = this.width/3 - 20;
-			var html = '<h2>' + this.title + '</h2>'
+			x = this.width/3*2;
+			y = this.height/10*5;
+			height = this.height/10 * 5;
+			width = this.width/3 - 20;
+			html = '<h2>' + this.title + '</h2>';
 		}
 		if (this.tile_type == "medium"){
-			var x = 20;
-			var y = this.height/10*8.5;
-			var height = this.height/10 * 1.5;
-			var width = this.width - 40;
-			var html = '<h3>' + this.title + '</h3>'
+			x = 20;
+			y = this.height/10*8.5;
+			height = this.height/10 * 1.5;
+			width = this.width - 40;
+			html = '<h3>' + this.title + '</h3>';
 		}
 		this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
 		this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
@@ -407,3 +408,86 @@ function AnimatedImageTextTile(options){
 }
 AnimatedImageTextTile.prototype = new ImageTile({display:false});
 AnimatedImageTextTile.prototype.constructor = AnimatedImageTextTile;
+
+/**
+top level draw wrapper around draw\_bg and draw\_image and draw\_text
+@memberof AnimatedImageTextTile
+@method draw 
+**/
+AnimatedImageTextTile.prototype.draw = function() {
+	this.draw_bg();
+	this.draw_image();
+	this.draw_text();
+	//add callbacks to expose the display of the animated text
+	this.link_selection.on('mouseover',function(){this.show_text();});
+	this.link_selection.on('mouseout',function(){this.hide_text();});
+};
+
+/**
+show the text in the Tile
+@memberof AnimatedImageTextTile
+@method show_text
+**/
+AnimatedImageTextTile.prototype.show_text = function() {
+	this.text_selection.transition().duration(500).attr("y",this.height/2);
+};
+
+/**
+hide the text in the Tile
+@memberof AnimatedImageTextTile
+@method hide_text 
+**/
+AnimatedImageTextTile.prototype.hide_text = function() {
+	this.text_selection.transition().duration(500).attr("y",this.height + 10);
+};
+
+/**
+draws the tile's text using d3.js
+@memberof AnimatedImageTextTile
+@method draw_text 
+**/
+AnimatedImageTextTile.prototype.draw_text = function() {
+	// get the correct height and width to draw
+	this.width = $("#" + this.div_id).outerWidth();
+	if (this.tile_type == "small"){
+		this.height = 150;
+	}else{
+		this.height = 300;
+	}
+
+	// set up a top level svg selection if the tile needs to be initialized
+	if (!this.init_state){
+		this.svg=d3.select("#" + this.div_id).append("svg")
+			.attr("class",this.div_id + "_tile_svg")
+			.attr("width",this.width)
+			.attr("height",this.height);
+	}
+
+	// (re)draw the text
+	if (this.tile_type == "wide" || this.tile_type == "medium"){
+		var x,y,height,width,html;
+		x = 20;
+		y = this.height + 10;
+		height = this.height/10 * 5;
+		width = this.width - 40;
+		if (this.tile_type == "wide"){
+			html = '<h2>' + this.title + '</h2>';
+		}
+		if (this.tile_type == "medium"){
+			html = '<h3>' + this.title + '</h3>';
+		}
+		this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
+		this.text_selection = this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
+			.enter().append("foreignObject")
+			.attr("class","tile_text")
+			.attr("x",x)
+			.attr("y",y)
+			.attr("height",height)
+			.attr("width",width)
+			.append("xhtml:body")
+			.style("background-color",this.color)
+			.html(html);
+	}
+
+};
+
