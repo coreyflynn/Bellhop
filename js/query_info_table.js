@@ -335,7 +335,6 @@ function Query_Info_Table_Object2(options){
 			f:'{"pert_iname":1,"cell_id":1,"pert_type":1,"score":1}',
 			l:1000},
 			function(response){
-				console.log(response);
 					if (response == 0){
 						self.collapse_panel.panels[0].grid_data = [];
 						self.collapse_panel.panels[0].grid.render();
