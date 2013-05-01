@@ -431,7 +431,7 @@ show the text in the Tile
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
 	console.log("show");
-	this.text_selection.transition().duration(500).attr("y",this.height/2);
+	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).attr("y",this.height/2);
 };
 
 /**
@@ -441,7 +441,7 @@ hide the text in the Tile
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
 	console.log("hide");
-	this.text_selection.transition().duration(500).attr("y",this.height + 10);
+	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).attr("y",this.height + 10);
 };
 
 /**
