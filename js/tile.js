@@ -466,10 +466,10 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 
 	// (re)draw the text
 	var x,y,height,width,html;
-	x = 20;
+	x = 0;
 	y = 20;
 	height = this.height - 40;
-	width = this.width - 40;
+	width = this.width;
 	if (this.tile_type == "wide"){
 		html = '<h2>' + this.title + '</h2>';
 	}
@@ -477,8 +477,7 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 		html = '<h3>' + this.title + '</h3>';
 	}
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
-	this.text_selection = this.svg.select('.draw_layer').selectAll('.tile_text');
-	this.text_selection.data([this.title])
+	this.svg.select('.draw_layer').selectAll('.tile_text').data([this.title])
 		.enter().append("foreignObject")
 		.attr("class","tile_text")
 		.attr("x",x)
