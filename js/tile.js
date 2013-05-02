@@ -431,7 +431,7 @@ show the text in the Tile
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
 	$("#" + this.div_id + "_tile_text").animate({opacity:1},500);
-	this.svg.select(this.div_id + "_tile_text").transition().duration(500).attr("y",20);
+	this.svg.select(".tile_text").transition().duration(500).attr("y",20);
 };
 
 /**
@@ -441,7 +441,7 @@ hide the text in the Tile
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
 	$("#" + this.div_id + "_tile_text").animate({opacity:0},500);
-	this.svg.select(this.div_id + "_tile_text").transition().duration(500).attr("y",this.height);
+	this.svg.select(".tile_text").transition().duration(500).attr("y",this.height);
 };
 
 /**
