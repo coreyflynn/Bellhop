@@ -481,12 +481,12 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([this.title])
 		.enter().append("foreignObject")
+		.attr("class","tile_text")
 		.attr("x",x)
 		.attr("y",y)
 		.attr("height",height)
 		.attr("width",width)
 		.append("xhtml:div")
-		.attr("class","tile_text")
 		.attr("id",this.div_id + "_tile_text")
 		.style("background-color","#ffffff")
 		.style("opacity",0.5)
