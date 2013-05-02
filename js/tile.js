@@ -430,7 +430,7 @@ show the text in the Tile
 @method show_text
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
-	this.svg.select('.draw_layer').selectAll('foreignobject.tile_text').transition().duration(500).style("opacity",1);
+	$("#" + this.div_id + "_tile_text").animate({opacity,1},500);
 };
 
 /**
@@ -439,7 +439,7 @@ hide the text in the Tile
 @method hide_text 
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
-	this.svg.select('.draw_layer').selectAll('foreignobject.tile_text').transition().duration(500).style("opacity",0);
+	$("#" + this.div_id + "_tile_text").animate({opacity,0},500);
 };
 
 /**
@@ -479,7 +479,7 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([this.title])
 		.enter().append("foreignObject")
-		.attr("class","tile_text")
+		.attr("class",this.div_id + "_tile_text")
 		.attr("x",x)
 		.attr("y",y)
 		.attr("height",height)
