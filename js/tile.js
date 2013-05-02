@@ -376,7 +376,7 @@ ImageTextTile.prototype.draw_text = function() {
 			.attr("y",y)
 			.attr("height",height)
 			.attr("width",width)
-			.append("xhtml:body")
+			.append("xhtml:div")
 			.style("background-color",this.color)
 			.html(html);
 	}
@@ -430,7 +430,7 @@ show the text in the Tile
 @method show_text
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
-	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).style("opacity",0);
+	this.svg.select('.draw_layer').selectAll('foreignobject.tile_text').transition().duration(500).style("opacity",1);
 };
 
 /**
@@ -439,7 +439,7 @@ hide the text in the Tile
 @method hide_text 
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
-	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).style("opacity",0);
+	this.svg.select('.draw_layer').selectAll('foreignobject.tile_text').transition().duration(500).style("opacity",0);
 };
 
 /**
