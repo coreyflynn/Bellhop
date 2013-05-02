@@ -479,7 +479,8 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
 	this.svg.select('.draw_layer').selectAll('.tile_text').data([this.title])
 		.enter().append("foreignObject")
-		.attr("class",this.div_id + "_tile_text")
+		.attr("class","tile_text")
+		.attr("id",this.div_id + "_tile_text")
 		.attr("x",x)
 		.attr("y",y)
 		.attr("height",height)
