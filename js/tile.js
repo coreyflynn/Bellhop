@@ -484,7 +484,7 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 		.attr("y",y)
 		.attr("height",height)
 		.attr("width",width)
-		.append("xhtml:body")
+		.append("xhtml:div")
 		.style("background-color","#ffffff")
 		.style("opacity",0.5)
 		.html(html);
