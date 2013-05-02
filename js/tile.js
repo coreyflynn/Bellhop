@@ -430,7 +430,7 @@ show the text in the Tile
 @method show_text
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
-	$("#" + this.div_id + "_tile_text").animate({opacity,1},500);
+	$("#" + this.div_id + "_tile_text").animate({opacity:1},500);
 };
 
 /**
@@ -439,7 +439,7 @@ hide the text in the Tile
 @method hide_text 
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
-	$("#" + this.div_id + "_tile_text").animate({opacity,0},500);
+	$("#" + this.div_id + "_tile_text").animate({opacity:0},500);
 };
 
 /**
