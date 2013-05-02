@@ -430,8 +430,7 @@ show the text in the Tile
 @method show_text
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
-	console.log("show");
-	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).attr("y",this.height/2);
+	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).style("opacity",0);
 };
 
 /**
@@ -440,8 +439,7 @@ hide the text in the Tile
 @method hide_text 
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
-	console.log("hide");
-	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).attr("y",this.height + 10);
+	this.svg.select('.draw_layer').selectAll('.tile_text').transition().duration(500).style("opacity",0);
 };
 
 /**
@@ -469,9 +467,9 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 	// (re)draw the text
 	var x,y,height,width,html;
 	x = 20;
-	y = this.height;
-	height = this.height/10 * 5;
-	width = this.width;
+	y = 20;
+	height = this.height - 40;
+	width = this.width - 40;
 	if (this.tile_type == "wide"){
 		html = '<h2>' + this.title + '</h2>';
 	}
