@@ -322,9 +322,19 @@ function Query_Info_Table_Object2(options){
 		// one table row for each connection.  Each object in the response will
 		// contain many tail connections and each of these will be converted into
 		// a row in the table
-		$.getJSON(siginfo,{q:'{"pert_iname":"' + iname + '","pert_type":"' + type + '"}',
-        f:'{"sig_id":1}',
-        l:1000},
+		var query;
+		if (type === undefined){
+			query = '{"pert_iname":"' + iname + '"}';
+		}else{
+			query = '{"pert_iname":"' + iname + '","pert_type":"' + type + '"}';
+		}
+
+		var params = {
+				q: query,
+				f:'{"sig_id":1}',
+		        l:1000
+			}
+		$.getJSON(siginfo,params,
 		function(sig_info_response){
 			var sigs = [];
 			sig_info_response.forEach(function(element,index,array){
