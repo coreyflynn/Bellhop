@@ -369,7 +369,7 @@ ImageTextTile.prototype.draw_text = function() {
 			html = '<h3>' + this.title + '</h3>';
 		}
 		this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
-		this.svg.select('.draw_layer').selectAll(".tile_text").data([this.title])
+		this.svg.select('.draw_layer').selectAll('.tile_text').data([this.title])
 			.enter().append("foreignObject")
 			.attr("class","tile_text")
 			.attr("x",x)
@@ -405,6 +405,8 @@ function AnimatedImageTextTile(options){
 	var self = this;
 	$(window).resize(function() {self.draw();} );
 	this.draw();
+	this.TextIsAnimatingIn = false;
+	this.TextIsAnimatingOut = false;
 }
 AnimatedImageTextTile.prototype = new ImageTile({display:false});
 AnimatedImageTextTile.prototype.constructor = AnimatedImageTextTile;
@@ -430,8 +432,12 @@ show the text in the Tile
 @method show_text
 **/
 AnimatedImageTextTile.prototype.show_text = function() {
-	$("#" + this.div_id + "_tile_text").animate({opacity:1},500);
-	this.svg.select(".tile_text").transition().duration(500).attr("y",20);
+	if (!this.TextIsAnimating){
+		$("#" + this.div_id + "_tile_text").animate({opacity:1},500);
+	}
+	this.TextIsAnimating = true;
+	var self = this;
+	setTimeout(function(){self.TextIsAnimatingIn = false;},500);
 };
 
 /**
@@ -440,8 +446,12 @@ hide the text in the Tile
 @method hide_text 
 **/
 AnimatedImageTextTile.prototype.hide_text = function() {
-	$("#" + this.div_id + "_tile_text").animate({opacity:0},500);
-	this.svg.select(".tile_text").transition().duration(500).attr("y",this.height);
+	if (!this.TextIsAnimating){
+		$("#" + this.div_id + "_tile_text").animate({opacity:0},500);
+	}
+	this.TextIsAnimating = true;
+	var self = this;
+	setTimeout(function(){self.TextIsAnimatingOut = false;},500);
 };
 
 /**
@@ -486,10 +496,136 @@ AnimatedImageTextTile.prototype.draw_text = function() {
 		.attr("y",y)
 		.attr("height",height)
 		.attr("width",width)
+		.style("pointer-events","none")
 		.append("xhtml:div")
 		.attr("id",this.div_id + "_tile_text")
+		.style("opacity",0)
 		.style("background-color","#ffffff")
-		.style("opacity",0.5)
+		.html(html);
+
+};
+
+/**
+FullAnimatedImageTextTile constructor
+@param {object} [options={}] options object to set properties
+@classdesc A Tile that extends AnimatedImageTile to add text that animates on mouseover
+@class FullAnimatedImageTextTile
+@constructor
+@extends ImageTile
+@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
+@param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
+@param {string}  [options.text] the text to display on the panel, defaults to "Title"
+@param {string}  [options.style] inline style specification, defaults to "#f0f0f0"
+@param {string}  [options.color] the background color of the tile, defuaults to 
+@param {string}  [options.tile_type] tile type, can be "small", "medium", or "wide", defaults to "medium"
+
+**/
+function FullAnimatedImageTextTile(options){
+	this.title = (options.title !== undefined) ? options.title : "Title";
+	ImageTile.apply(this,arguments);
+	var self = this;
+	$(window).resize(function() {self.draw();} );
+	this.draw();
+	this.start_animation();
+	this.TextIsAnimatingIn = false;
+	this.TextIsAnimatingOut = false;
+}
+FullAnimatedImageTextTile.prototype = new AnimatedImageTile({display:false});
+FullAnimatedImageTextTile.prototype.constructor = FullAnimatedImageTextTile;
+
+/**
+top level draw wrapper around draw\_bg and draw\_image and draw\_text
+@memberof FullAnimatedImageTextTile
+@method draw 
+**/
+FullAnimatedImageTextTile.prototype.draw = function() {
+	this.draw_bg();
+	this.draw_image();
+	this.draw_text();
+	//add callbacks to expose the display of the animated text
+	var self = this;
+	this.link_selection.on('mouseover',function(){self.show_text();});
+	this.link_selection.on('mouseout',function(){self.hide_text();});
+};
+
+/**
+show the text in the Tile
+@memberof FullAnimatedImageTextTile
+@method show_text
+**/
+FullAnimatedImageTextTile.prototype.show_text = function() {
+	if (!this.TextIsAnimatingIn){
+		$("#" + this.div_id + "_tile_text").animate({opacity:1},500);
+	}
+	this.TextIsAnimating = true;
+	var self = this;
+	setTimeout(function(){self.TextIsAnimatingIn = false;},500);
+};
+
+/**
+hide the text in the Tile
+@memberof FullAnimatedImageTextTile
+@method hide_text 
+**/
+FullAnimatedImageTextTile.prototype.hide_text = function() {
+	if (!this.TextIsAnimatingOut){
+		$("#" + this.div_id + "_tile_text").animate({opacity:0},500);
+	}
+	this.TextIsAnimating = true;
+	var self = this;
+	setTimeout(function(){self.TextIsAnimatingOut = false;},500);
+};
+
+/**
+draws the tile's text using d3.js
+@memberof FullAnimatedImageTextTile
+@method draw_text 
+**/
+FullAnimatedImageTextTile.prototype.draw_text = function() {
+	// get the correct height and width to draw
+	this.width = $("#" + this.div_id).outerWidth();
+	if (this.tile_type == "small"){
+		this.height = 150;
+	}else{
+		this.height = 300;
+	}
+
+	// set up a top level svg selection if the tile needs to be initialized
+	if (!this.init_state){
+		this.svg=d3.select("#" + this.div_id).append("svg")
+			.attr("class",this.div_id + "_tile_svg")
+			.attr("width",this.width)
+			.attr("height",this.height);
+	}
+
+	// (re)draw the text
+	var x,y,height,width,html;
+	x = 0;
+	y = 20;
+	height = this.height - 40;
+	width = this.width;
+	if (this.tile_type == "wide"){
+		html = '<h2>' + this.title + '</h2>';
+	}
+	if (this.tile_type == "medium" || this.tile_type == "small"){
+		html = '<h3>' + this.title + '</h3>';
+	}
+	this.svg.select('.draw_layer').selectAll('.tile_text').data([]).exit().remove();
+	this.svg.select('.draw_layer').selectAll('.tile_text').data([this.title])
+		.enter().append("foreignObject")
+		.attr("class","tile_text")
+		.attr("x",x)
+		.attr("y",y)
+		.attr("height",height)
+		.attr("width",width)
+		.style("pointer-events","none")
+		.append("xhtml:body")
+		.attr("id",this.div_id + "_tile_text")
+		.attr("height",height)
+		.attr("width",width)
+		.style("background-color","#ffffff")
+		.style("opacity",0)
 		.html(html);
 
 };
