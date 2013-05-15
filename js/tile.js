@@ -171,7 +171,7 @@ ImageTile constructor
 @class ImageTile
 @constructor
 @extends Tile
-@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.image] the url to use as the image,defaults to "../Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
 @param {string}  [options.style] inline style specification, defaults to "#f0f0f0"
@@ -180,7 +180,7 @@ ImageTile constructor
 
 **/
 function ImageTile(options){
-	this.image = (options.image !== undefined) ? options.image : "http://coreyflynn.github.com/Bellhop/img/two_circles.png";
+	this.image = (options.image !== undefined) ? options.image : "../Bellhop/img/two_circles.png";
 	Tile.apply(this,arguments);
 	var self = this;
 	$(window).resize(function() {self.draw();} );
@@ -241,7 +241,7 @@ AnimatedImageTextTile constructor
 @class AnimatedImageTile
 @constructor
 @extends Tile
-@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.image] the url to use as the image,defaults to "../Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
 @param {string}  [options.style] inline style specification, defaults to "#f0f0f0"
@@ -250,7 +250,7 @@ AnimatedImageTextTile constructor
 
 **/
 function AnimatedImageTile(options){
-	this.image = (options.image !== undefined) ? options.image : "http://coreyflynn.github.com/Bellhop/img/two_circles.png";
+	this.image = (options.image !== undefined) ? options.image : "../Bellhop/img/two_circles.png";
 	Tile.apply(this,arguments);
 	var self = this;
 	$(window).resize(function() {self.draw();} );
@@ -299,7 +299,7 @@ ImageTextTile constructor
 @class ImageTextTile
 @constructor
 @extends ImageTile
-@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.image] the url to use as the image,defaults to "../Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
 @param {string}  [options.text] the text to display on the panel, defaults to "Title"
@@ -390,7 +390,7 @@ AnimatedImageTextTile constructor
 @class AnimatedImageTextTile
 @constructor
 @extends ImageTile
-@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.image] the url to use as the image,defaults to "../Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
 @param {string}  [options.text] the text to display on the panel, defaults to "Title"
@@ -512,7 +512,7 @@ FullAnimatedImageTextTile constructor
 @class FullAnimatedImageTextTile
 @constructor
 @extends ImageTile
-@param {string}  [options.image] the url to use as the image,defaults to "http://coreyflynn.github.com/Bellhop/img.two_circles.png"
+@param {string}  [options.image] the url to use as the image,defaults to "../Bellhop/img.two_circles.png"
 @param {string}  [options.div_target] the div id into which to inject html, defaults to "body"
 @param {string}  [options.div_id] the div id for generated html, defaults to "Tile" plus a random number
 @param {string}  [options.text] the text to display on the panel, defaults to "Title"
