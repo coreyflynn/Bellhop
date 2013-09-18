@@ -3,19 +3,19 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
-<line fill="#EE2A69" stroke="#EE2A69" stroke-width="4" x1="249.167" y1="285.167" x2="263.333" y2="293.333"/>
-<polyline fill="none" stroke="#EE2A69" stroke-width="4" points="293,293.333 277.833,285.167 263.333,293.333 "/>
-<polygon fill="none" stroke="#EE2A69" stroke-width="4" points="307.5,319.167 322.667,311 322.667,293.333 307.5,285.167 
-	293,293.333 293,311 "/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="322.667" y1="311" x2="331.5" y2="316"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="346.833" y1="316" x2="354.167" y2="311"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="339.167" y1="327.167" x2="339.167" y2="336.5"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="274" y1="274.167" x2="274" y2="287.167"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="281.5" y1="274.167" x2="281.5" y2="287.167"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="298.5" y1="297.167" x2="307.5" y2="292"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="298.5" y1="307.667" x2="307.5" y2="312.667"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="316.5" y1="297.167" x2="316.5" y2="307.667"/>
-<line fill="none" stroke="#EE2A69" stroke-width="4" x1="263.333" y1="293.333" x2="263.333" y2="307.667"/>
-<circle fill="none" stroke="#EE2A69" stroke-width="4" cx="278" cy="266.167" r="5"/>
-<circle fill="none" stroke="#EE2A69" stroke-width="4" cx="339.333" cy="319.166" r="4.833"/>
+<line fill="#EE2A69" stroke="#EE2A69" x1="15.984" y1="22.86" x2="19.745" y2="25.028"/>
+<polyline fill="none" stroke="#EE2A69" points="27.621,25.028 23.595,22.86 19.745,25.028 "/>
+<polygon fill="none" stroke="#EE2A69" points="31.471,31.886 35.498,29.718 35.498,25.028 31.471,22.86 27.621,25.028 
+	27.621,29.718 "/>
+<line fill="none" stroke="#EE2A69" x1="35.498" y1="29.718" x2="37.842" y2="31.045"/>
+<line fill="none" stroke="#EE2A69" x1="41.913" y1="31.045" x2="43.86" y2="29.718"/>
+<line fill="none" stroke="#EE2A69" x1="39.878" y1="34.01" x2="39.878" y2="36.488"/>
+<line fill="none" stroke="#EE2A69" x1="22.577" y1="19.939" x2="22.577" y2="23.391"/>
+<line fill="none" stroke="#EE2A69" x1="24.568" y1="19.939" x2="24.568" y2="23.391"/>
+<line fill="none" stroke="#EE2A69" x1="29.082" y1="26.045" x2="31.471" y2="24.674"/>
+<line fill="none" stroke="#EE2A69" x1="29.082" y1="28.833" x2="31.471" y2="30.161"/>
+<line fill="none" stroke="#EE2A69" x1="33.86" y1="26.045" x2="33.86" y2="28.833"/>
+<line fill="none" stroke="#EE2A69" x1="19.745" y1="25.028" x2="19.745" y2="28.833"/>
+<circle fill="none" stroke="#EE2A69" cx="23.639" cy="17.815" r="1.327"/>
+<circle fill="none" stroke="#EE2A69" cx="39.922" cy="31.886" r="1.283"/>
 </svg>
