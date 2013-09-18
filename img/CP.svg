@@ -3,19 +3,19 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600px" height="600px" viewBox="0 0 600 600" enable-background="new 0 0 600 600" xml:space="preserve">
-<line fill="#EE2A69" stroke="#EE2A69" x1="15.984" y1="22.86" x2="19.745" y2="25.028"/>
-<polyline fill="none" stroke="#EE2A69" points="27.621,25.028 23.595,22.86 19.745,25.028 "/>
-<polygon fill="none" stroke="#EE2A69" points="31.471,31.886 35.498,29.718 35.498,25.028 31.471,22.86 27.621,25.028 
-	27.621,29.718 "/>
-<line fill="none" stroke="#EE2A69" x1="35.498" y1="29.718" x2="37.842" y2="31.045"/>
-<line fill="none" stroke="#EE2A69" x1="41.913" y1="31.045" x2="43.86" y2="29.718"/>
-<line fill="none" stroke="#EE2A69" x1="39.878" y1="34.01" x2="39.878" y2="36.488"/>
-<line fill="none" stroke="#EE2A69" x1="22.577" y1="19.939" x2="22.577" y2="23.391"/>
-<line fill="none" stroke="#EE2A69" x1="24.568" y1="19.939" x2="24.568" y2="23.391"/>
-<line fill="none" stroke="#EE2A69" x1="29.082" y1="26.045" x2="31.471" y2="24.674"/>
-<line fill="none" stroke="#EE2A69" x1="29.082" y1="28.833" x2="31.471" y2="30.161"/>
-<line fill="none" stroke="#EE2A69" x1="33.86" y1="26.045" x2="33.86" y2="28.833"/>
-<line fill="none" stroke="#EE2A69" x1="19.745" y1="25.028" x2="19.745" y2="28.833"/>
-<circle fill="none" stroke="#EE2A69" cx="23.639" cy="17.815" r="1.327"/>
-<circle fill="none" stroke="#EE2A69" cx="39.922" cy="31.886" r="1.283"/>
+<line fill="#EE2A69" stroke="#F7941E" stroke-width="2" x1="2.046" y1="19.232" x2="9.568" y2="23.568"/>
+<polyline fill="none" stroke="#F7941E" stroke-width="2" points="25.32,23.568 17.268,19.232 9.568,23.568 "/>
+<polygon fill="none" stroke="#F7941E" stroke-width="2" points="33.02,37.285 41.073,32.949 41.073,23.568 33.02,19.232 
+	25.32,23.568 25.32,32.949 "/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="41.073" y1="32.949" x2="45.763" y2="35.603"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="53.904" y1="35.603" x2="57.799" y2="32.949"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="49.834" y1="41.533" x2="49.834" y2="46.488"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="15.232" y1="13.391" x2="15.232" y2="20.293"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="19.215" y1="13.391" x2="19.215" y2="20.293"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="28.241" y1="25.603" x2="33.02" y2="22.86"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="28.241" y1="31.179" x2="33.02" y2="33.833"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="37.799" y1="25.603" x2="37.799" y2="31.179"/>
+<line fill="none" stroke="#F7941E" stroke-width="2" x1="9.568" y1="23.568" x2="9.568" y2="31.179"/>
+<circle fill="none" stroke="#F7941E" stroke-width="2" cx="17.356" cy="9.143" r="2.655"/>
+<circle fill="none" stroke="#F7941E" stroke-width="2" cx="49.922" cy="37.285" r="2.567"/>
 </svg>
