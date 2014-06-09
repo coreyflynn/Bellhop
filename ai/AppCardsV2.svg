@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960px"
+	 height="700px" viewBox="0 0 960 700" enable-background="new 0 0 960 700" xml:space="preserve">
+<g id="base_state">
+	<path fill="#DDE1E2" d="M584.199,283.587v118.227c0,13.442-10.898,24.341-24.342,24.341H400.142
+		c-13.443,0-24.341-10.898-24.341-24.341V283.587"/>
+	<g id="XMLID_13_">
+		<g>
+			<g id="XMLID_10_">
+				<g>
+					<path fill="#010101" d="M516.871,399.119l-23.491-23.49c-6.436,4.213-14.126,6.686-22.431,6.686
+						c-22.64,0-40.949-18.354-40.949-40.993c0-22.595,18.305-40.944,40.949-40.944c22.599,0,40.939,18.349,40.939,40.944
+						c0,7.905-2.225,15.268-6.074,21.508l23.655,23.652c1.255,1.215,0.202,4.25-2.311,6.762l-3.522,3.529
+						C521.122,399.279,518.087,400.33,516.871,399.119z M498.283,341.322c0-15.108-12.231-27.338-27.339-27.338
+						c-15.109,0-27.375,12.229-27.375,27.338c0,15.11,12.266,27.381,27.375,27.381C486.052,368.703,498.283,356.434,498.283,341.322
+						z"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="hover_state">
+	<path fill="#DDE1E2" d="M584.199,283.587v118.227c0,13.442-10.898,24.341-24.342,24.341H400.142
+		c-13.443,0-24.341-10.898-24.341-24.341V283.587"/>
+	<rect x="387.2" y="296.502" fill="none" width="185.601" height="118.098"/>
+	<text transform="matrix(1 0 0 1 410.4248 313.6377)"><tspan x="0" y="0" fill="#81878B" font-family="'HelveticaNeue'" font-size="24">Match user-</tspan><tspan x="-0.216" y="28.8" fill="#81878B" font-family="'HelveticaNeue'" font-size="24">defined gene </tspan><tspan x="-3.349" y="57.6" fill="#81878B" font-family="'HelveticaNeue'" font-size="24">sets to L1000 </tspan><tspan x="14.016" y="86.4" fill="#81878B" font-family="'HelveticaNeue'" font-size="24">signatures</tspan></text>
+</g>
+<g id="title_layer">
+	<path fill="#0E7992" d="M375.801,283.587v-46.458c0-13.443,10.898-24.341,24.341-24.341h159.715
+		c13.443,0,24.342,10.898,24.342,24.341v46.458"/>
+	<rect x="375.801" y="235.911" fill="none" width="208.398" height="43.902"/>
+	<text transform="matrix(1 0 0 1 437.2056 257.3306)" font-family="'HelveticaNeue-Bold'" font-size="30">Query</text>
+	<rect x="375.801" y="278.672" fill="#6DBBE8" width="208.398" height="9.83"/>
+</g>
+</svg>
