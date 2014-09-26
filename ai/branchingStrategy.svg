@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="612px"
+	 height="792px" viewBox="0 0 612 792" enable-background="new 0 0 612 792" xml:space="preserve">
+<g id="feature">
+	<polyline fill="none" stroke="#F9EF6B" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" points="
+		212.848,134.163 200.683,91.674 72.981,91.674 	"/>
+	<polyline fill="none" stroke="#F9EF6B" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" points="
+		358.943,134.163 346.778,49.557 79.037,49.557 66.873,134.163 	"/>
+	<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="115.53" cy="91.673" r="12.164"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="115.53" cy="92.067" r="5.963"/>
+	<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="164.189" cy="92.066" r="12.165"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="164.189" cy="92.066" r="5.963"/>
+	<g>
+		<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="115.531" cy="49.165" r="12.164"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="115.531" cy="49.558" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="164.19" cy="49.557" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="164.189" cy="49.557" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="212.848" cy="49.557" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="212.848" cy="49.557" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="261.507" cy="49.557" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="261.506" cy="49.557" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="310.165" cy="49.557" r="12.164"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="310.164" cy="49.557" r="5.963"/>
+	</g>
+	<polyline fill="none" stroke="#F9EF6B" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" points="
+		504.799,134.163 492.634,91.674 370.988,91.674 358.824,134.163 	"/>
+	<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="407.481" cy="91.477" r="12.164"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="407.481" cy="91.87" r="5.962"/>
+	<circle fill="#F9EF6B" stroke="#F9EF6B" stroke-miterlimit="10" cx="456.14" cy="91.87" r="12.165"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="456.139" cy="91.87" r="5.962"/>
+</g>
+<g id="develop">
+	<polyline fill="none" stroke="#F79868" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" points="
+		553.576,176.553 541.293,134.163 30.379,134.163 18.215,176.553 	"/>
+	<g>
+		<circle fill="#F79868" stroke="#F79868" stroke-linejoin="round" stroke-miterlimit="10" cx="66.873" cy="134.163" r="12.164"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-miterlimit="10" cx="66.872" cy="134.163" r="5.963"/>
+	</g>
+	<circle fill="#F79868" stroke="#F79868" stroke-linejoin="round" stroke-miterlimit="10" cx="212.848" cy="134.162" r="12.165"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-miterlimit="10" cx="212.849" cy="134.162" r="5.963"/>
+	<circle fill="#F79868" stroke="#F79868" stroke-linejoin="round" stroke-miterlimit="10" cx="358.823" cy="134.162" r="12.165"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-miterlimit="10" cx="358.824" cy="134.162" r="5.963"/>
+	<circle fill="#F79868" stroke="#F79868" stroke-linejoin="round" stroke-miterlimit="10" cx="504.799" cy="134.162" r="12.165"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-linejoin="round" stroke-miterlimit="10" cx="504.799" cy="134.162" r="5.962"/>
+	
+		<line fill="none" stroke="#F79868" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" x1="406.85" y1="176.553" x2="394.565" y2="134.163"/>
+	
+		<line fill="none" stroke="#F79868" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" x1="261.686" y1="176.553" x2="249.401" y2="134.163"/>
+</g>
+<g id="release">
+	
+		<line fill="none" stroke="#8BCFB7" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" x1="267.589" y1="218.943" x2="310.165" y2="218.943"/>
+	<polyline fill="none" stroke="#8BCFB7" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" points="
+		261.507,176.554 273.671,261.335 310.165,261.335 	"/>
+	<path fill="#8BCFB7" stroke="#8BCFB7" stroke-miterlimit="10" d="M322.329,218.943c0,6.718-5.444,12.165-12.164,12.165
+		c-6.719,0-12.165-5.447-12.165-12.165c0-6.718,5.446-12.165,12.165-12.165C312.844,206.779,322.329,209.164,322.329,218.943z"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="310.166" cy="218.943" r="5.963"/>
+	<path fill="#8BCFB7" stroke="#8BCFB7" stroke-miterlimit="10" d="M322.33,261.334c0,6.718-5.444,12.166-12.164,12.166
+		c-6.718,0-12.165-5.447-12.165-12.166c0-6.718,5.446-12.164,12.165-12.164C312.845,249.17,322.33,251.555,322.33,261.334z"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="310.167" cy="261.334" r="5.963"/>
+	
+		<line fill="none" stroke="#8BCFB7" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" x1="413.564" y1="218.943" x2="456.142" y2="218.943"/>
+	<polyline fill="none" stroke="#8BCFB7" stroke-width="10" stroke-linejoin="round" stroke-miterlimit="10" points="
+		407.483,176.554 419.647,261.335 456.142,261.335 	"/>
+	<path fill="#8BCFB7" stroke="#8BCFB7" stroke-miterlimit="10" d="M468.306,218.943c0,6.718-5.445,12.165-12.164,12.165
+		s-12.165-5.447-12.165-12.165c0-6.718,5.446-12.165,12.165-12.165C458.82,206.779,468.306,209.164,468.306,218.943z"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="456.142" cy="218.943" r="5.963"/>
+	<path fill="#8BCFB7" stroke="#8BCFB7" stroke-miterlimit="10" d="M468.307,261.334c0,6.718-5.446,12.166-12.164,12.166
+		c-6.719,0-12.165-5.447-12.165-12.166c0-6.718,5.446-12.164,12.165-12.164C458.821,249.17,468.307,251.555,468.307,261.334z"/>
+	<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="456.143" cy="261.334" r="5.963"/>
+	<text transform="matrix(1 0 0 1 573.7305 179.2715)" font-family="'OpenSans-Bold'" font-size="8.9207">master</text>
+	<text transform="matrix(1 0 0 1 555.6035 136.8799)" font-family="'OpenSans-Bold'" font-size="8.9207">develop</text>
+	<text transform="matrix(1 0 0 1 506.9453 94.7852)" font-family="'OpenSans-Bold'" font-size="8.9207">feature/f3</text>
+	<text transform="matrix(1 0 0 1 360.1592 53.0859)" font-family="'OpenSans-Bold'" font-size="8.9207">feature/f2</text>
+	<text transform="matrix(1 0 0 1 214.9951 94.7852)" font-family="'OpenSans-Bold'" font-size="8.9207">feature/f1</text>
+	<text transform="matrix(1 0 0 1 330.4395 220.9443)" font-family="'OpenSans-Bold'" font-size="8.9207">release/io1</text>
+	<text transform="matrix(1 0 0 1 330.4395 264.4961)" font-family="'OpenSans-Bold'" font-size="8.9207">release/org1</text>
+	<text transform="matrix(1 0 0 1 476.4131 220.9443)" font-family="'OpenSans-Bold'" font-size="8.9207">release/io2</text>
+	<text transform="matrix(1 0 0 1 476.4131 264.4961)" font-family="'OpenSans-Bold'" font-size="8.9207">release/org2</text>
+</g>
+<g id="master">
+	
+		<line fill="#7E69AF" stroke="#7E69AF" stroke-width="10" stroke-miterlimit="10" x1="18.215" y1="176.553" x2="553.457" y2="176.553"/>
+	<g>
+		<circle fill="#7E69AF" stroke="#7E69AF" stroke-miterlimit="10" cx="18.215" cy="176.553" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="18.215" cy="176.553" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#7E69AF" stroke="#7E69AF" stroke-miterlimit="10" cx="261.507" cy="176.553" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="261.507" cy="176.553" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#7E69AF" stroke="#7E69AF" stroke-miterlimit="10" cx="407.482" cy="176.553" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="407.483" cy="176.553" r="5.963"/>
+	</g>
+	<g>
+		<circle fill="#7E69AF" stroke="#7E69AF" stroke-miterlimit="10" cx="553.458" cy="176.553" r="12.165"/>
+		<circle fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" cx="553.458" cy="176.553" r="5.963"/>
+	</g>
+</g>
+<g id="labels">
+</g>
+</svg>
